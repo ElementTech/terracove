@@ -22,8 +22,9 @@ func getAllDirectories(dirs []string, ValidateOptions types.ValidateOptions) map
 	subpaths := make(map[string][]string)
 	for _, dir := range dirs {
 		filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
-			if err != nil || info.IsDir() && strings.HasPrefix(info.Name(), ".") {
-				return err
+			if err != nil || !info.IsDir() || (strings.HasPrefix(info.Name(), ".") && (info.Name() != ".")) {
+				fmt.Println("Skipping ", info.Name())
+				return filepath.SkipDir
 			}
 			if moduleType := checkModuleType(path, ValidateOptions); moduleType != "" {
 				subpaths[dir] = append(subpaths[dir], filepath.ToSlash(path))
