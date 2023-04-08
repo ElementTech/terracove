@@ -10,7 +10,7 @@ require (
 	github.com/go-critic/go-critic v0.7.0
 	github.com/golangci/golangci-lint v1.51.2
 	github.com/gotesttools/gotestfmt/v2 v2.4.1
-	github.com/gruntwork-io/terratest v0.41.16
+	github.com/gruntwork-io/terratest v0.41.17
 	github.com/hashicorp/terraform-json v0.16.0
 	github.com/spf13/cobra v1.6.1
 	golang.org/x/lint v0.0.0-20210508222113-6edffad5e616
