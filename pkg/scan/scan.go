@@ -2,6 +2,7 @@ package scan
 
 import (
 	"fmt"
+	"io/fs"
 	"math"
 	"os"
 	"path/filepath"
@@ -18,16 +19,37 @@ import (
 	"github.com/jatalocks/terracove/pkg/report"
 )
 
+// filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
+// 	fmt.Println(info.Name(),info.IsDir(),strings.HasPrefix(filepath.Base(path), "."),)
+// 	if (info.IsDir() && !strings.HasPrefix(filepath.Base(path), ".")) || path == "." {
+// 		if moduleType := checkModuleType(path, ValidateOptions); moduleType != "" {
+// 			subpaths[dir] = append(subpaths[dir], filepath.ToSlash(path))
+// 		}
+// 	} else {
+// 		fmt.Println("Skipping", info.Name())
+// 		return filepath.SkipDir
+// 	}
+// 	return nil
+// })
+
 func getAllDirectories(dirs []string, ValidateOptions types.ValidateOptions) map[string][]string {
-	subpaths := make(map[string][]string)
+	subpaths := make(map[string][]string, len(dirs))
 	for _, dir := range dirs {
-		filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
-			if err != nil || !info.IsDir() || (strings.HasPrefix(info.Name(), ".") && (info.Name() != ".")) {
-				fmt.Println("Skipping ", info.Name())
+		filepath.WalkDir(dir, func(xpath string, xinfo fs.DirEntry, xerr error) error {
+			if xerr != nil {
+				fmt.Printf("error [%v] at a path [%q]\n", xerr, xpath)
+				return xerr
+			}
+			if !xinfo.IsDir() {
+				fmt.Printf("skipping file [%q]\n", xpath)
+				return nil
+			}
+			if strings.HasPrefix(filepath.Base(xpath), ".") && xpath != "." {
+				fmt.Printf("skipping file [%q]\n", xpath)
 				return filepath.SkipDir
 			}
-			if moduleType := checkModuleType(path, ValidateOptions); moduleType != "" {
-				subpaths[dir] = append(subpaths[dir], filepath.ToSlash(path))
+			if moduleType := checkModuleType(xpath, ValidateOptions); moduleType != "" {
+				subpaths[dir] = append(subpaths[dir], filepath.ToSlash(xpath))
 			}
 			return nil
 		})
