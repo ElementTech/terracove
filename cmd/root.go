@@ -23,10 +23,7 @@ in one of more of the following formats: junit or json.`,
 		Args:    cobra.MinimumNArgs(1),
 		RunE:    run,
 	}
-	cmd.AddGroup(&cobra.Group{
-		ID:    "test",
-		Title: "Test",
-	})
+
 	cmd.Flags().BoolVarP(&OutputOptions.Json, "json", "j", false, "Output JSON")
 	// cmd.Flags().BoolVarP(&OutputOptions.Yaml, "yaml", "y", false, "Output YAML")
 	cmd.Flags().BoolVarP(&OutputOptions.Junit, "junit", "x", false, "Output Junit XML")
