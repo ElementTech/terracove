@@ -12,7 +12,7 @@ require (
 	github.com/gotesttools/gotestfmt/v2 v2.4.1
 	github.com/gruntwork-io/terratest v0.41.16
 	github.com/hashicorp/terraform-json v0.16.0
-	github.com/spf13/cobra v1.6.1
+	github.com/spf13/cobra v1.7.0
 	golang.org/x/lint v0.0.0-20210508222113-6edffad5e616
 	golang.org/x/tools v0.7.0
 	mvdan.cc/gofumpt v0.4.0
