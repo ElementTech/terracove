@@ -1,0 +1,15 @@
+terracove
+vendor/
+coverage.out
+/dist
+.envrc
+manpages/
+dist/
+.DS_Store
+.terraform*
+.terracove*
+junit.xml
+terraform.tfstate.backup
+terracove.json
+terracove.yaml
+terracove.xml
