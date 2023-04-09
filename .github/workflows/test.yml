@@ -26,6 +26,11 @@ jobs:
       - name: go mod tidy
         run: go mod tidy
 
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2.0.3
+      - name: Setup Terragrunt
+        uses: autero1/action-terragrunt@v1.3.1
+
       - name: Run coverage
         run: go test -race -coverprofile="coverage.out" -covermode=atomic ./...
 
