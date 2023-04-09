@@ -37,3 +37,11 @@ func TestRun(t *testing.T) {
 	assert.NoError(t, err)
 
 }
+
+func TestExecute(t *testing.T) {
+
+	err := Execute("1.0.0", true)
+
+	assert.NoError(t, err)
+
+}

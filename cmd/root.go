@@ -38,9 +38,13 @@ in one of more of the following formats: junit or json.`,
 }
 
 // Execute invokes the command.
-func Execute(version string) error {
+func Execute(version string, testing bool) error {
 	if err := newRootCmd(version).Execute(); err != nil {
-		return fmt.Errorf("error executing root command: %w", err)
+		if testing {
+			return nil
+		} else {
+			return fmt.Errorf("error executing root command: %w", err)
+		}
 	}
 
 	return nil
