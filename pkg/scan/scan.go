@@ -17,6 +17,7 @@ import (
 	tfjson "github.com/hashicorp/terraform-json"
 	"github.com/jatalocks/terracove/internal/types"
 	"github.com/jatalocks/terracove/pkg/report"
+	"golang.org/x/exp/slices"
 )
 
 // filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
@@ -32,13 +33,16 @@ import (
 // 	return nil
 // })
 
-func getAllDirectories(dirs []string, ValidateOptions types.ValidateOptions) map[string][]string {
+func getAllDirectories(dirs []string, ValidateOptions types.ValidateOptions, RecursiveOptions types.RecursiveOptions) map[string][]string {
 	subpaths := make(map[string][]string, len(dirs))
 	for _, dir := range dirs {
 		filepath.WalkDir(dir, func(xpath string, xinfo fs.DirEntry, xerr error) error {
 			if xerr != nil {
 				fmt.Printf("error [%v] at a path [%q]\n", xerr, xpath)
 				return xerr
+			}
+			if slices.Contains(RecursiveOptions.Exclude, filepath.Base(xpath)) {
+				return filepath.SkipDir
 			}
 			if !xinfo.IsDir() {
 				fmt.Printf("skipping file [%q]\n", xpath)
@@ -80,8 +84,8 @@ func Flatten[T any](lists [][]T) []T {
 	return res
 }
 
-func TestTerraformModules(paths []string, OutputOptions types.OutputOptions, ValidateOptions types.ValidateOptions) map[string][]string {
-	dirsMap := getAllDirectories(paths, ValidateOptions)
+func TestTerraformModules(paths []string, OutputOptions types.OutputOptions, ValidateOptions types.ValidateOptions, RecursiveOptions types.RecursiveOptions) map[string][]string {
+	dirsMap := getAllDirectories(paths, ValidateOptions, RecursiveOptions)
 	timestamp := time.Now().Format(time.RFC3339)
 	var statuses []types.TerraformModuleStatus
 	var wg sync.WaitGroup

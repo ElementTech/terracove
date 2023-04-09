@@ -15,6 +15,10 @@ type OutputOptions struct {
 	JunitOutPath string
 }
 
+type RecursiveOptions struct {
+	Exclude []string
+}
+
 type ValidateOptions struct {
 	ValidateTerraformBy  string
 	ValidateTerragruntBy string
