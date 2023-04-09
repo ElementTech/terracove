@@ -74,6 +74,7 @@ Flags:
 ```
 
 ## Quickstart
+> Note that you must have terraform/terragrunt binaries installed on your machine
 
 > The [examples](./examples) directory contains **4 modules**. 2 of them are [terraform](./examples/terraform) and 2 are [terragrunt](./examples/terragrunt). 
 > 
