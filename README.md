@@ -19,7 +19,7 @@
   <a href="#key-features">Key Features</a> •
   <a href="#install">Install</a> •
   <a href="#usage">Usage</a> •
-  <a href="#quickstart">Quickstart</a>
+  <a href="#quickstart">Quickstart</a> •
   <a href="#credits">Credits</a> •
   <a href="#support">Support</a> •
   <a href="#license">License</a>
