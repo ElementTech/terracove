@@ -23,7 +23,7 @@
   <a href="#quickstart">Quickstart</a>
   <a href="#credits">Credits</a> •
   <a href="#support">Support</a> •
-  <a href="#license">License</a> •
+  <a href="#license">License</a>
 </p>
 
 <!-- ![screenshot](https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.gif) -->
