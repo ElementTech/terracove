@@ -114,7 +114,7 @@ func TerraformModulesTerratest(paths []string, OutputOptions types.OutputOptions
 					if res.Error == nil {
 						plan, err := terraform.ShowWithStructE(&testingContext, tfOptions)
 						if err == nil {
-							res.RawPlan = plan.RawPlan
+							// res.RawPlan = plan.RawPlan
 							resourceCount := len(plan.ResourceChangesMap)
 							var resourceCountExists uint
 							var resourceCountDiff uint

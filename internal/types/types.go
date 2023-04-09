@@ -2,8 +2,6 @@ package types
 
 import (
 	"time"
-
-	tfjson "github.com/hashicorp/terraform-json"
 )
 
 type OutputOptions struct {
@@ -47,12 +45,12 @@ type Result struct {
 	ResourceCountDiff   uint
 	Coverage            float64
 	Duration            time.Duration
-	RawPlan             tfjson.Plan
-	ActionNoopCount     uint
-	ActionCreateCount   uint
-	ActionReadCount     uint
-	ActionUpdateCount   uint
-	ActionDeleteCount   uint
+	// RawPlan             tfjson.Plan
+	ActionNoopCount   uint
+	ActionCreateCount uint
+	ActionReadCount   uint
+	ActionUpdateCount uint
+	ActionDeleteCount uint
 }
 
 type TerraformModuleStatus struct {

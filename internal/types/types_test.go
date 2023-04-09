@@ -4,7 +4,6 @@ import (
 	"testing"
 	"time"
 
-	tfjson "github.com/hashicorp/terraform-json"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -45,12 +44,12 @@ func TestTypes(t *testing.T) {
 			ResourceCountDiff:   3,
 			Coverage:            60.0,
 			Duration:            time.Second,
-			RawPlan:             tfjson.Plan{},
-			ActionNoopCount:     1,
-			ActionCreateCount:   2,
-			ActionReadCount:     3,
-			ActionUpdateCount:   4,
-			ActionDeleteCount:   5,
+			// RawPlan:             tfjson.Plan{},
+			ActionNoopCount:   1,
+			ActionCreateCount: 2,
+			ActionReadCount:   3,
+			ActionUpdateCount: 4,
+			ActionDeleteCount: 5,
 		}
 
 		assert.Equal(t, "/path/to/module", r.Path)
@@ -60,7 +59,7 @@ func TestTypes(t *testing.T) {
 		assert.Equal(t, uint(3), r.ResourceCountDiff)
 		assert.Equal(t, 60.0, r.Coverage)
 		assert.Equal(t, time.Second, r.Duration)
-		assert.Equal(t, tfjson.Plan{}, r.RawPlan)
+		// assert.Equal(t, tfjson.Plan{}, r.RawPlan)
 		assert.Equal(t, uint(1), r.ActionNoopCount)
 		assert.Equal(t, uint(2), r.ActionCreateCount)
 		assert.Equal(t, uint(3), r.ActionReadCount)
