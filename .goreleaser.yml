@@ -17,7 +17,7 @@ brews:
     homepage: "https://github.com/jatalocks/terracove"
     tap:
       owner: jatalocks
-      name: terracove
+      name: homebrew-terracove
     commit_author:
       name: jatalocks
       email: amitai333@gmail.com

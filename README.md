@@ -41,7 +41,7 @@
 The recommended way to install on MacOS is via brew:
 
 ```sh
-brew tap terracove/terracove
+brew tap jatalocks/jatalocks
 brew install terracove
 ```
 
