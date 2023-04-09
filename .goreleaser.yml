@@ -35,13 +35,12 @@ archives:
 
 dockers:
   - image_templates:
-      - "jatalocks/{{.ProjectName}}:{{ .Tag }}-amd64"
       - "ghcr.io/jatalocks/{{.ProjectName}}:{{ .Tag }}-amd64"
     dockerfile: Dockerfile
     use: buildx
     build_flag_templates:
       - "--pull"
-      - "--label=io.artifacthub.package.readme-url=https://raw.githubusercontent.com/jatalocks/terracove/master/README.md"
+      - "--label=io.artifacthub.package.readme-url=https://raw.githubusercontent.com/jatalocks/terracove/main/README.md"
       - '--label=io.artifacthub.package.maintainers=[{"name":"Jatalocks","email":"amitai333@gmail.com"}]'
       - "--label=io.artifacthub.package.license=MIT"
       - "--label=org.opencontainers.image.description=A recursive terraform repository tester powered by Terratest"
@@ -52,14 +51,13 @@ dockers:
       - "--label=org.opencontainers.image.source={{.GitURL}}"
       - "--platform=linux/amd64"
   - image_templates:
-      - "jatalocks/{{.ProjectName}}:{{ .Tag }}-arm64"
       - "ghcr.io/jatalocks/{{.ProjectName}}:{{ .Tag }}-arm64"
     dockerfile: Dockerfile
     use: buildx
     build_flag_templates:
       - "--pull"
-      - "--label=io.artifacthub.package.readme-url=https://raw.githubusercontent.com/jatalocks/terracove/master/README.md"
-      - "--label=io.artifacthub.package.logo-url=https://raw.githubusercontent.com/jatalocks/terracove/master/www/static/images/logo.png"
+      - "--label=io.artifacthub.package.readme-url=https://raw.githubusercontent.com/jatalocks/terracove/main/README.md"
+      - "--label=io.artifacthub.package.logo-url=https://raw.githubusercontent.com/jatalocks/terracove/main/assets/logo/logo.png"
       - '--label=io.artifacthub.package.maintainers=[{"name":"Jatalocks","email":"amitai333@gmail.com"}]'
       - "--label=io.artifacthub.package.license=MIT"
       - "--label=org.opencontainers.image.description=A recursive terraform repository tester powered by Terratest"
