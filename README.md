@@ -52,7 +52,7 @@ curl -sS https://raw.githubusercontent.com/jatalocks/terracove/main/install.sh |
 
 If you'd like to use Docker, you can use the official image:
 ```sh
-docker run --rm -v $(pwd):/app ghcr.io/jatalocks/terracove --json --junit /app
+docker run --rm -v $(pwd):/data ghcr.io/jatalocks/terracove /data --json --junit
 ```
 ## Usage
 
