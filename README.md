@@ -1,7 +1,7 @@
 
 <h1 align="center">
   <br>
-  <img src="./assets/logo/logo.png" alt="terracove" width="300">
+  <img src="./assets/logo/logo.png" alt="terracove" width="200">
 </h1>
 
 <h4 align="center">A recursive terraform repository tester powered by <a href="https://terratest.gruntwork.io/" target="_blank">Terratest</a>.</h4>
