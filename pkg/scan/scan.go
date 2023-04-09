@@ -20,19 +20,6 @@ import (
 	"golang.org/x/exp/slices"
 )
 
-// filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
-// 	fmt.Println(info.Name(),info.IsDir(),strings.HasPrefix(filepath.Base(path), "."),)
-// 	if (info.IsDir() && !strings.HasPrefix(filepath.Base(path), ".")) || path == "." {
-// 		if moduleType := checkModuleType(path, ValidateOptions); moduleType != "" {
-// 			subpaths[dir] = append(subpaths[dir], filepath.ToSlash(path))
-// 		}
-// 	} else {
-// 		fmt.Println("Skipping", info.Name())
-// 		return filepath.SkipDir
-// 	}
-// 	return nil
-// })
-
 func getAllDirectories(dirs []string, ValidateOptions types.ValidateOptions, RecursiveOptions types.RecursiveOptions) map[string][]string {
 	subpaths := make(map[string][]string, len(dirs))
 	for _, dir := range dirs {
