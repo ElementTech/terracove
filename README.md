@@ -10,7 +10,6 @@
 <img src="https://github.com/jatalocks/terracove/actions/workflows/test.yml/badge.svg" alt="drawing"/>
 <img src="https://github.com/jatalocks/terracove/actions/workflows/lint.yml/badge.svg" alt="drawing"/>
 <img src="https://pkg.go.dev/badge/github.com/jatalocks/terracove.svg" alt="drawing"/>
-<img src="https://codecov.io/gh/jatalocks/terracove/branch/main/graph/badge.svg" alt="drawing"/>
 <img src="https://img.shields.io/github/v/release/jatalocks/terracove" alt="drawing"/>
 <img src="https://img.shields.io/docker/pulls/jatalocks/terracove" alt="drawing"/>
 <img src="https://img.shields.io/github/downloads/jatalocks/terracove/total.svg" alt="drawing"/>
