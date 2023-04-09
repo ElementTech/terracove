@@ -19,7 +19,11 @@
 <p align="center">
   <a href="#key-features">Key Features</a> •
   <a href="#install">Install</a> •
+  <a href="#usage">Usage</a> •
   <a href="#quickstart">Quickstart</a>
+  <a href="#credits">Credits</a> •
+  <a href="#support">Support</a> •
+  <a href="#license">License</a> •
 </p>
 
 <!-- ![screenshot](https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.gif) -->
@@ -51,7 +55,7 @@ If you'd like to use Docker, you can use the official image:
 ```sh
 docker run --rm ghcr.io/jatalocks/terracove --version
 ```
-## Full Usage
+## Usage
 
 ```sh
 Usage:
@@ -133,5 +137,4 @@ This software uses the following open source projects:
 
 ## License
 
-MIT
-
+[MIT](LICENSE)
