@@ -71,7 +71,7 @@ func Flatten[T any](lists [][]T) []T {
 	return res
 }
 
-func TestTerraformModules(paths []string, OutputOptions types.OutputOptions, ValidateOptions types.ValidateOptions, RecursiveOptions types.RecursiveOptions) map[string][]string {
+func TerraformModulesTerratest(paths []string, OutputOptions types.OutputOptions, ValidateOptions types.ValidateOptions, RecursiveOptions types.RecursiveOptions) error {
 	dirsMap := getAllDirectories(paths, ValidateOptions, RecursiveOptions)
 	timestamp := time.Now().Format(time.RFC3339)
 	var statuses []types.TerraformModuleStatus
@@ -161,11 +161,13 @@ func TestTerraformModules(paths []string, OutputOptions types.OutputOptions, Val
 	junitStruct, err := report.CreateJunitStruct(statuses)
 	if err != nil {
 		fmt.Println(err)
+		return err
 	}
 	if OutputOptions.Junit {
 
 		if err := report.CreateCoverageXML(junitStruct, OutputOptions.JunitOutPath); err != nil {
 			fmt.Println("Error while creating junit XML: ", err)
+			return err
 		} else {
 			fmt.Printf("%v created succesfully\n", OutputOptions.JunitOutPath)
 		}
@@ -173,6 +175,7 @@ func TestTerraformModules(paths []string, OutputOptions types.OutputOptions, Val
 	if OutputOptions.Json {
 		if err := report.CreateJson(statuses, OutputOptions.JsonOutPath); err != nil {
 			fmt.Println("Error while creating JSON: ", err)
+			return err
 		} else {
 			fmt.Printf("%v created succesfully\n", OutputOptions.JsonOutPath)
 		}

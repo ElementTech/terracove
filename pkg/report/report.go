@@ -31,12 +31,12 @@ func CreateJson(suitesRoot []types.TerraformModuleStatus, path string) error {
 
 	file, err := json.MarshalIndent(suitesRoot, "", " ")
 	if err != nil {
-		fmt.Println(err)
+		return err
 	}
 
 	err = ioutil.WriteFile(path, file, 0644)
 	if err != nil {
-		fmt.Println(err)
+		return err
 	}
 
 	return nil
