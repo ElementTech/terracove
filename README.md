@@ -1,12 +1,12 @@
-# terracove
 
-<div align="center">
-A general purpose project template for golang CLI applications
-<br>
-<br>
-This template serves as a starting point for golang commandline applications it is based on golang projects that I consider high quality and various other useful blog posts that helped me understanding golang better.
-<br>
-<br>
+<h1 align="center">
+  <br>
+  <img src="./assets/logo/logo.png" alt="terracove" width="250">
+</h1>
+
+<h4 align="center">A recursive terraform repository tester powered by <a href="https://terratest.gruntwork.io/" target="_blank">Terratest</a>.</h4>
+
+<p align="center">
 <img src="https://github.com/jatalocks/terracove/actions/workflows/test.yml/badge.svg" alt="drawing"/>
 <img src="https://github.com/jatalocks/terracove/actions/workflows/lint.yml/badge.svg" alt="drawing"/>
 <img src="https://pkg.go.dev/badge/github.com/jatalocks/terracove.svg" alt="drawing"/>
@@ -14,97 +14,124 @@ This template serves as a starting point for golang commandline applications it 
 <img src="https://img.shields.io/github/v/release/jatalocks/terracove" alt="drawing"/>
 <img src="https://img.shields.io/docker/pulls/jatalocks/terracove" alt="drawing"/>
 <img src="https://img.shields.io/github/downloads/jatalocks/terracove/total.svg" alt="drawing"/>
-</div>
+</p>
 
-# Table of Contents
-<!--ts-->
-   * [terracove](#terracove)
-   * [Features](#features)
-   * [Project Layout](#project-layout)
-   * [How to use this template](#how-to-use-this-template)
-   * [Demo Application](#demo-application)
-   * [Makefile Targets](#makefile-targets)
-   * [Contribute](#contribute)
+<p align="center">
+  <a href="#key-features">Key Features</a> •
+  <a href="#install">Install</a> •
+  <a href="#quickstart">Quickstart</a>
+</p>
 
-<!-- Added by: morelly_t1, at: Tue 10 Aug 2021 08:54:24 AM CEST -->
+<!-- ![screenshot](https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.gif) -->
 
-<!--te-->
+## Key Features
 
-# Features
-- [goreleaser](https://goreleaser.com/) with `deb.` and `.rpm` packer and container (`docker.hub` and `ghcr.io`) releasing including `manpages` and `shell completions` and grouped Changelog generation.
-- [golangci-lint](https://golangci-lint.run/) for linting and formatting
-- [Github Actions](.github/worflows) Stages (Lint, Test (`windows`, `linux`, `mac-os`), Build, Release) 
-- [Gitlab CI](.gitlab-ci.yml) Configuration (Lint, Test, Build, Release)
-- [cobra](https://cobra.dev/) example setup including tests
-- [Makefile](Makefile) - with various useful targets and documentation (see Makefile Targets)
-- [Github Pages](_config.yml) using [jekyll-theme-minimal](https://github.com/pages-themes/minimal) (checkout [https://jatalocks.github.io/terracove/](https://jatalocks.github.io/terracove/))
-- Useful `README.md` badges
-- [pre-commit-hooks](https://pre-commit.com/) for formatting and validating code before committing
+* Test in parallel multiple directory paths
+* Generate a `junit.xml` with `--junit`
+* Generate a `json` summary with `--json`
+* Generate `%` coverage for each module and root directory
+* Supports terraform and terragrunt in the same directory tree
 
-# Project Layout
-* [assets/](https://pkg.go.dev/github.com/jatalocks/terracove/assets) => docs, images, etc
-* [cmd/](https://pkg.go.dev/github.com/jatalocks/terracove/cmd)  => commandline configurartions (flags, subcommands)
-* [pkg/](https://pkg.go.dev/github.com/jatalocks/terracove/pkg)  => packages that are okay to import for other projects
-* [internal/](https://pkg.go.dev/github.com/jatalocks/terracove/pkg)  => packages that are only for project internal purposes
-- [`tools/`](tools/) => for automatically shipping all required dependencies when running `go get` (or `make bootstrap`) such as `golang-ci-lint` (see: https://github.com/golang/go/wiki/Modules#how-can-i-track-tool-dependencies-for-a-module)
-)
-- [`scripts/`](scripts/) => build scripts 
 
-# How to use this template
+## Install
+
+The recommended way to install on MacOS is via brew:
+
 ```sh
-bash <(curl -s https://raw.githubusercontent.com/jatalocks/terracove/master/install.sh)
+brew tap terracove/terracove
+brew install terracove
 ```
 
-In order to make the CI work you will need to have the following Secrets in your repository defined:
+Or, you can install directly from release:
+```sh
+curl -sS https://raw.githubusercontent.com/jatalocks/terracove/main/install.sh | bash
+```
 
-Repository  -> Settings -> Secrets & variables -> `CODECOV_TOKEN`, `DOCKERHUB_TOKEN` & `DOCKERHUB_USERNAME`
-
-# Demo Application
+If you'd like to use Docker, you can use the official image:
+```sh
+docker run --rm ghcr.io/jatalocks/terracove --version
+```
+## Full Usage
 
 ```sh
-$> terracove -h
-golang-cli project template demo application
-
 Usage:
-  terracove [flags]
-  terracove [command]
-
-Available Commands:
-  completion  Generate the autocompletion script for the specified shell
-  example     example subcommand which adds or multiplies two given integers
-  help        Help about any command
-  version     terracove version
+  terracove [paths]... [flags]
 
 Flags:
-  -h, --help   help for terracove
-
-Use "terracove [command] --help" for more information about a command.
+  -e, --exclude strings         Exclude directories while parsing tree
+  -h, --help                    help for terracove
+  -j, --json                    Output JSON
+  -x, --junit                   Output Junit XML
+      --o-json string           Output JSON (default "terracove.json")
+      --o-junit string          Output Junit XML (default "terracove.xml")
+  -t, --validate-tf-by string   validate terraform by the existence of [filename] in a directory (default "main.tf")
+  -g, --validate-tg-by string   validate terragrunt by the existence of [filename] in a directory (default "terragrunt.hcl")
+  -v, --version                 version for terracove
 ```
+
+## Quickstart
+
+> The [examples](./examples) directory contains **4 modules**. 2 of them are [terraform](./examples/terraform) and 2 are [terragrunt](./examples/terragrunt). 
+> 
+> **Oh no!** It appears some of them have some problems. Let's see exactly what is going on.
+> Clone this repository and give it a try.
 
 ```sh
-$> terracove example 2 5 --add
-7
-
-$> terracove example 2 5 --multiply
-10
+git clone https://github.com/jatalocks/terracove.git
+terracove --junit --json . # Same as terracove --junit --json examples
 ```
 
-# Makefile Targets
-```sh
-$> make
-bootstrap                      install build deps
-build                          build golang binary
-clean                          clean up environment
-cover                          display test coverage
-docker-build                   dockerize golang application
-fmt                            format go files
-help                           list makefile targets
-install                        install golang binary
-lint                           lint go files
-pre-commit                     run pre-commit hooks
-run                            run the app
-test                           display test coverage
+Open the **terracove.xml** or **terracove.json** and observe the results. You should see the following:
+
+```json
+[
+ {
+  "Timestamp": "1984-01-01T19:32:58+05:00",
+  "Path": ".",
+  "Results": [
+   {
+    "Path": "examples/terragrunt/no-resources",
+    "ResourceCount": 0,
+    "Coverage": 100,
+    ...
+   },
+   {
+    "Path": "examples/terragrunt/error",
+    "Coverage": 0,
+    ...
+   },
+   {
+    "Path": "examples/terraform/tfstate-diff",
+    "ResourceCount": 2,
+    "ResourceCountDiff": 1,
+    "Coverage": 50,
+    ...
+   },
+   {
+    "Path": "examples/terraform/success",
+    "ResourceCount": 2,
+    "ResourceCountExists": 2,
+    "Coverage": 100,
+    ...
+   }
+  ],
+  "Coverage": 62.5
+ }
+]
 ```
 
-# Contribute
-If you find issues in that setup or have some nice features / improvements, I would welcome an issue or a PR :)
+
+## Credits
+
+This software uses the following open source projects:
+
+- [golang-cli-template](https://github.com/FalcoSuessgott/golang-cli-template)
+- [terratest](https://terratest.gruntwork.io/)
+## Support
+
+<a href="https://www.buymeacoffee.com/jatalocks" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+
+## License
+
+MIT
+
