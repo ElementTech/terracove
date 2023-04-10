@@ -41,8 +41,14 @@ func TestCheckModuleType(t *testing.T) {
 	// Create test files
 	terrFile := filepath.Join(dir, "terragrunt.hcl")
 	terraformFile := filepath.Join(dir, "main.tf")
-	os.Create(terrFile)
-	os.Create(terraformFile)
+	_, err := os.Create(terrFile)
+	if err != nil {
+		fmt.Println(err)
+	}
+	_, err = os.Create(terraformFile)
+	if err != nil {
+		fmt.Println(err)
+	}
 
 	// Define ValidateOptions
 	opts := types.ValidateOptions{
@@ -84,16 +90,18 @@ func TestFlatten(t *testing.T) {
 	}
 }
 
-// Helper function to check if two slices are equal
+// Helper function to check if two slices are equal.
 func equal[T comparable](a, b []T) bool {
 	if len(a) != len(b) {
 		return false
 	}
+
 	for i, v := range a {
 		if v != b[i] {
 			return false
 		}
 	}
+
 	return true
 }
 
@@ -133,7 +141,6 @@ func TestAveragePercentage(t *testing.T) {
 func TestTerraformModulesTerratest(t *testing.T) {
 	// Define some example input values
 	paths := []string{"../../examples"}
-	outputOptions := types.OutputOptions{Junit: true, JunitOutPath: "../../test.xml", Json: true, JsonOutPath: "../../test.json"}
 	validateOptions := types.ValidateOptions{
 		ValidateTerragruntBy: "terragrunt.hcl",
 		ValidateTerraformBy:  "main.tf",
@@ -142,9 +149,15 @@ func TestTerraformModulesTerratest(t *testing.T) {
 	recursiveOptions := types.RecursiveOptions{Exclude: []string{}}
 
 	// Call the function being tested
-	result := TerraformModulesTerratest(paths, outputOptions, validateOptions, recursiveOptions)
+	result := TerraformModulesTerratest(paths,
+		types.OutputOptions{Junit: true, JunitOutPath: "../../test.xml", JSON: true, JSONOutPath: "../../test.json"},
+		validateOptions,
+		recursiveOptions,
+	)
+
 	os.Remove("../../test.xml")
 	os.Remove("../../test.json")
+
 	// Check that the actual result matches the expected output
 	assert.Nil(t, result)
 }

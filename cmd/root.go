@@ -8,9 +8,11 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var OutputOptions types.OutputOptions
-var ValidateOptions types.ValidateOptions
-var RecursiveOptions types.RecursiveOptions
+var (
+	OutputOptions    types.OutputOptions
+	ValidateOptions  types.ValidateOptions
+	RecursiveOptions types.RecursiveOptions
+)
 
 func newRootCmd(version string) *cobra.Command {
 	cmd := &cobra.Command{
@@ -25,15 +27,16 @@ in one of more of the following formats: junit or json.`,
 		RunE:    run,
 	}
 
-	cmd.Flags().BoolVarP(&OutputOptions.Json, "json", "j", false, "Output JSON")
+	cmd.Flags().BoolVarP(&OutputOptions.JSON, "json", "j", false, "Output JSON")
 	// cmd.Flags().BoolVarP(&OutputOptions.Yaml, "yaml", "y", false, "Output YAML")
 	cmd.Flags().BoolVarP(&OutputOptions.Junit, "junit", "x", false, "Output Junit XML")
-	cmd.Flags().StringVar(&OutputOptions.JsonOutPath, "o-json", "terracove.json", "Output JSON")
+	cmd.Flags().StringVar(&OutputOptions.JSONOutPath, "o-json", "terracove.json", "Output JSON")
 	// cmd.Flags().StringVar(&OutputOptions.YamlOutPath, "o-yaml", "terracove.yaml", "Output YAML")
 	cmd.Flags().StringVar(&OutputOptions.JunitOutPath, "o-junit", "terracove.xml", "Output Junit XML")
 	cmd.Flags().StringSliceVarP(&RecursiveOptions.Exclude, "exclude", "e", []string{}, "Exclude directories while parsing tree")
 	cmd.Flags().StringVarP(&ValidateOptions.ValidateTerraformBy, "validate-tf-by", "t", "main.tf", "validate terraform by the existence of [filename] in a directory")
 	cmd.Flags().StringVarP(&ValidateOptions.ValidateTerragruntBy, "validate-tg-by", "g", "terragrunt.hcl", "validate terragrunt by the existence of [filename] in a directory")
+
 	return cmd
 }
 
@@ -42,9 +45,9 @@ func Execute(version string, testing bool) error {
 	if err := newRootCmd(version).Execute(); err != nil {
 		if testing {
 			return nil
-		} else {
-			return fmt.Errorf("error executing root command: %w", err)
 		}
+
+		return fmt.Errorf("error executing root command: %w", err)
 	}
 
 	return nil
@@ -52,5 +55,6 @@ func Execute(version string, testing bool) error {
 
 func run(cmd *cobra.Command, args []string) error {
 	scan.TerraformModulesTerratest(args, OutputOptions, ValidateOptions, RecursiveOptions)
+
 	return nil
 }

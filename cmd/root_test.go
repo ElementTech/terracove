@@ -16,9 +16,9 @@ func TestNewRootCmd(t *testing.T) {
 	assert.Contains(t, cmd.Long, "terracove provides a recursive way to test the health and validity")
 	assert.Equal(t, version, cmd.Version)
 
-	assert.False(t, OutputOptions.Json)
+	assert.False(t, OutputOptions.JSON)
 	assert.False(t, OutputOptions.Junit)
-	assert.Equal(t, "terracove.json", OutputOptions.JsonOutPath)
+	assert.Equal(t, "terracove.json", OutputOptions.JSONOutPath)
 	assert.Equal(t, "terracove.xml", OutputOptions.JunitOutPath)
 	assert.Equal(t, "main.tf", ValidateOptions.ValidateTerraformBy)
 	assert.Equal(t, "terragrunt.hcl", ValidateOptions.ValidateTerragruntBy)
@@ -27,21 +27,18 @@ func TestNewRootCmd(t *testing.T) {
 func TestRun(t *testing.T) {
 	args := []string{"examples"}
 	var stdout bytes.Buffer
-	OutputOptions.Json = true
-	OutputOptions.JsonOutPath = "output.json"
+	OutputOptions.JSON = true
+	OutputOptions.JSONOutPath = "output.json"
 	rootCmd := newRootCmd("1.0.0")
 	rootCmd.SetOut(&stdout)
 
 	err := run(rootCmd, args)
 
 	assert.NoError(t, err)
-
 }
 
 func TestExecute(t *testing.T) {
-
 	err := Execute("1.0.0", true)
 
 	assert.NoError(t, err)
-
 }

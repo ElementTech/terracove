@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"encoding/xml"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"text/tabwriter"
 
@@ -27,14 +26,14 @@ func CreateCoverageXML(suitesRoot junit.Suites, path string) error {
 	}
 	return nil
 }
-func CreateJson(suitesRoot []types.TerraformModuleStatus, path string) error {
 
+func CreateJSON(suitesRoot []types.TerraformModuleStatus, path string) error {
 	file, err := json.MarshalIndent(suitesRoot, "", " ")
 	if err != nil {
 		return err
 	}
 
-	err = ioutil.WriteFile(path, file, 0644)
+	err = os.WriteFile(path, file, 0o600)
 	if err != nil {
 		return err
 	}
@@ -49,7 +48,7 @@ func CreateJson(suitesRoot []types.TerraformModuleStatus, path string) error {
 // 		fmt.Println(err)
 // 	}
 
-// 	err = ioutil.WriteFile(path, file, 0644)
+// 	err = io.WriteFile(path, file, 0644)
 // 	if err != nil {
 // 		fmt.Println(err)
 // 	}
@@ -113,6 +112,8 @@ func PrettyPrinter(testsuites junit.Suites) {
 		for _, tcase := range suite.Results {
 			var tc types.TestCase
 			tc.Name = tcase.Name
+
+			//nolint:gocritic
 			if tcase.Failure != nil {
 				tc.Status = "⚠️"
 				tc.Message = tcase.Failure.Message
@@ -129,6 +130,7 @@ func PrettyPrinter(testsuites junit.Suites) {
 				tc.Status = "√"
 				tc.Message = "Success"
 			}
+
 			report.TestCases = append(report.TestCases, tc)
 			report.Tests++
 		}

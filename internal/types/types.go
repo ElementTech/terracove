@@ -5,10 +5,10 @@ import (
 )
 
 type OutputOptions struct {
-	Json bool
+	JSON bool
 	// Yaml         bool
 	Junit       bool
-	JsonOutPath string
+	JSONOutPath string
 	// YamlOutPath  string
 	JunitOutPath string
 }

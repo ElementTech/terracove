@@ -3,7 +3,7 @@ package report
 import (
 	"encoding/json"
 	"encoding/xml"
-	"io/ioutil"
+	"io"
 	"os"
 	"testing"
 	"time"
@@ -50,7 +50,7 @@ func TestCreateCoverageXML(t *testing.T) {
 	}
 }
 
-func TestCreateJson(t *testing.T) {
+func TestCreateJSON(t *testing.T) {
 	// Define test cases
 	testCases := []struct {
 		suitesRoot []types.TerraformModuleStatus
@@ -66,7 +66,7 @@ func TestCreateJson(t *testing.T) {
 
 	// Run test cases
 	for _, tc := range testCases {
-		err := CreateJson(tc.suitesRoot, tc.path)
+		err := CreateJSON(tc.suitesRoot, tc.path)
 
 		// Verify result
 		if tc.expectErr {
@@ -80,7 +80,7 @@ func TestCreateJson(t *testing.T) {
 			assert.NoError(t, err)
 			defer file.Close()
 
-			bytes, err := ioutil.ReadAll(file)
+			bytes, err := io.ReadAll(file)
 			assert.NoError(t, err)
 
 			var data interface{}
@@ -114,6 +114,7 @@ func TestCreateJunitStruct(t *testing.T) {
 
 	// Call the function being tested
 	junitSuites, err := CreateJunitStruct(terraformStatuses)
+
 	if err != nil {
 		t.Errorf("CreateJunitStruct returned an error: %v", err)
 	}
@@ -122,7 +123,9 @@ func TestCreateJunitStruct(t *testing.T) {
 	if len(junitSuites.Suites) != 1 {
 		t.Errorf("CreateJunitStruct returned %d suites, expected 1", len(junitSuites.Suites))
 	}
+
 	suite := junitSuites.Suites[0]
+
 	if suite.Name != "module1" {
 		t.Errorf("CreateJunitStruct returned a suite with name %s, expected 'module1'", suite.Name)
 	}
@@ -132,7 +135,9 @@ func TestCreateJunitStruct(t *testing.T) {
 	if suite.Failures != 1 {
 		t.Errorf("CreateJunitStruct returned a suite with %d failures, expected 1", suite.Failures)
 	}
+
 	result := suite.Results[0]
+
 	if result.Name != "resource1" {
 		t.Errorf("CreateJunitStruct returned a result with name %s, expected 'resource1'", result.Name)
 	}

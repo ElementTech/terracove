@@ -20,12 +20,14 @@ import (
 	"golang.org/x/exp/slices"
 )
 
-func getAllDirectories(dirs []string, ValidateOptions types.ValidateOptions, RecursiveOptions types.RecursiveOptions) map[string][]string {
+func getAllDirectories(dirs []string, validateOptions types.ValidateOptions, RecursiveOptions types.RecursiveOptions) map[string][]string {
 	subpaths := make(map[string][]string, len(dirs))
+
 	for _, dir := range dirs {
 		filepath.WalkDir(dir, func(xpath string, xinfo fs.DirEntry, xerr error) error {
 			if xerr != nil {
 				fmt.Printf("error [%v] at a path [%q]\n", xerr, xpath)
+
 				return xerr
 			}
 			if slices.Contains(RecursiveOptions.Exclude, filepath.Base(xpath)) {
@@ -33,29 +35,33 @@ func getAllDirectories(dirs []string, ValidateOptions types.ValidateOptions, Rec
 			}
 			if !xinfo.IsDir() {
 				fmt.Printf("skipping file [%q]\n", xpath)
+
 				return nil
 			}
 			if strings.HasPrefix(filepath.Base(xpath), ".") && xpath != "." {
 				fmt.Printf("skipping file [%q]\n", xpath)
+
 				return filepath.SkipDir
 			}
-			if moduleType := checkModuleType(xpath, ValidateOptions); moduleType != "" {
+			if moduleType := checkModuleType(xpath, validateOptions); moduleType != "" {
 				subpaths[dir] = append(subpaths[dir], filepath.ToSlash(xpath))
 			}
+
 			return nil
 		})
 	}
+
 	return subpaths
 }
 
-func checkModuleType(path string, ValidateOptions types.ValidateOptions) string {
+func checkModuleType(path string, validateOptions types.ValidateOptions) string {
 	// Check for Terragrunt module
-	if _, err := os.Stat(filepath.Join(path, ValidateOptions.ValidateTerragruntBy)); err == nil {
+	if _, err := os.Stat(filepath.Join(path, validateOptions.ValidateTerragruntBy)); err == nil {
 		return "terragrunt"
 	}
 
 	// Check for Terraform module
-	if _, err := os.Stat(filepath.Join(path, ValidateOptions.ValidateTerraformBy)); err == nil {
+	if _, err := os.Stat(filepath.Join(path, validateOptions.ValidateTerraformBy)); err == nil {
 		return "terraform"
 	}
 
@@ -68,17 +74,21 @@ func Flatten[T any](lists [][]T) []T {
 	for _, list := range lists {
 		res = append(res, list...)
 	}
+
 	return res
 }
 
-func TerraformModulesTerratest(paths []string, OutputOptions types.OutputOptions, ValidateOptions types.ValidateOptions, RecursiveOptions types.RecursiveOptions) error {
-	dirsMap := getAllDirectories(paths, ValidateOptions, RecursiveOptions)
+func TerraformModulesTerratest(paths []string, OutputOptions types.OutputOptions, validateOptions types.ValidateOptions, RecursiveOptions types.RecursiveOptions) error {
+	dirsMap := getAllDirectories(paths, validateOptions, RecursiveOptions)
 	timestamp := time.Now().Format(time.RFC3339)
+
 	var statuses []types.TerraformModuleStatus
+
 	var wg sync.WaitGroup
 
 	for root, v := range dirsMap {
 		wg.Add(1)
+
 		go func(root string, v []string) {
 			defer wg.Done()
 
@@ -88,9 +98,10 @@ func TerraformModulesTerratest(paths []string, OutputOptions types.OutputOptions
 			var wg2 sync.WaitGroup
 			for _, dir := range v {
 				wg2.Add(1)
+
 				go func(dir string) {
 					defer wg2.Done()
-					moduleType := checkModuleType(dir, ValidateOptions)
+					moduleType := checkModuleType(dir, validateOptions)
 					if moduleType == "" {
 						return
 					}
@@ -118,7 +129,7 @@ func TerraformModulesTerratest(paths []string, OutputOptions types.OutputOptions
 							resourceCount := len(plan.ResourceChangesMap)
 							var resourceCountExists uint
 							var resourceCountDiff uint
-							var actionCount = map[tfjson.Action]int{}
+							actionCount := map[tfjson.Action]int{}
 							for _, change := range plan.ResourceChangesMap {
 								action := change.Change.Actions[0]
 								if action == tfjson.ActionCreate || action == tfjson.ActionUpdate || action == tfjson.ActionDelete {
@@ -136,7 +147,7 @@ func TerraformModulesTerratest(paths []string, OutputOptions types.OutputOptions
 							res.ActionReadCount = uint(actionCount[tfjson.ActionRead])
 							res.ActionUpdateCount = uint(actionCount[tfjson.ActionUpdate])
 							res.ActionDeleteCount = uint(actionCount[tfjson.ActionDelete])
-							res.Coverage = float64(percentage(float64(resourceCountExists), float64(resourceCount)))
+							res.Coverage = percentage(float64(resourceCountExists), float64(resourceCount))
 						} else {
 							res.Error = err
 						}
@@ -146,9 +157,11 @@ func TerraformModulesTerratest(paths []string, OutputOptions types.OutputOptions
 					mu.Unlock()
 				}(dir)
 			}
+
 			wg2.Wait()
 			mu.Lock()
 			defer mu.Unlock()
+
 			statuses = append(statuses, types.TerraformModuleStatus{
 				Path:      root,
 				Results:   results,
@@ -157,44 +170,52 @@ func TerraformModulesTerratest(paths []string, OutputOptions types.OutputOptions
 			})
 		}(root, v)
 	}
+
 	wg.Wait()
 	junitStruct, err := report.CreateJunitStruct(statuses)
 	if err != nil {
 		fmt.Println(err)
+
 		return err
 	}
 	if OutputOptions.Junit {
-
 		if err := report.CreateCoverageXML(junitStruct, OutputOptions.JunitOutPath); err != nil {
 			fmt.Println("Error while creating junit XML: ", err)
+
 			return err
 		} else {
-			fmt.Printf("%v created succesfully\n", OutputOptions.JunitOutPath)
+			fmt.Printf("%v created successfully\n", OutputOptions.JunitOutPath)
 		}
 	}
-	if OutputOptions.Json {
-		if err := report.CreateJson(statuses, OutputOptions.JsonOutPath); err != nil {
+	if OutputOptions.JSON {
+		if err := report.CreateJSON(statuses, OutputOptions.JSONOutPath); err != nil {
 			fmt.Println("Error while creating JSON: ", err)
+
 			return err
 		} else {
-			fmt.Printf("%v created succesfully\n", OutputOptions.JsonOutPath)
+			fmt.Printf("%v created successfully\n", OutputOptions.JSONOutPath)
 		}
 	}
+
 	// if OutputOptions.Yaml {
 	// 	if err := report.CreateYaml(statuses, OutputOptions.YamlOutPath); err != nil {
 	// 		fmt.Println("Error while creating YAML: ", err)
 	// 	} else {
-	// 		fmt.Printf("%v created succesfully\n", OutputOptions.YamlOutPath)
+	// 		fmt.Printf("%v created successfully\n", OutputOptions.YamlOutPath)
 	// 	}
 	// }
+
 	report.PrettyPrinter(junitStruct)
+
 	return nil
 }
 
 func percentage(num float64, denom float64) float64 {
 	if denom == 0 {
+
 		return 100
 	}
+
 	return math.Round((num/denom)*10000) / 100
 }
 
