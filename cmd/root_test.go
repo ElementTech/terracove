@@ -26,9 +26,12 @@ func TestNewRootCmd(t *testing.T) {
 
 func TestRun(t *testing.T) {
 	args := []string{"examples"}
+
 	var stdout bytes.Buffer
+
 	OutputOptions.JSON = true
 	OutputOptions.JSONOutPath = "output.json"
+
 	rootCmd := newRootCmd("1.0.0")
 	rootCmd.SetOut(&stdout)
 

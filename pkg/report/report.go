@@ -21,6 +21,7 @@ func CreateCoverageXML(suitesRoot junit.Suites, path string) error {
 
 	enc := xml.NewEncoder(file)
 	enc.Indent("", "\t")
+
 	if err := enc.Encode(suitesRoot); err != nil {
 		return err
 	}
@@ -58,6 +59,7 @@ func CreateJSON(suitesRoot []types.TerraformModuleStatus, path string) error {
 
 func CreateJunitStruct(terraformStatuses []types.TerraformModuleStatus) (junit.Suites, error) {
 	suitesRoot := junit.Suites{}
+
 	for _, ts := range terraformStatuses {
 		suites := junit.Suite{
 			Name:     ts.Path,
@@ -135,6 +137,7 @@ func PrettyPrinter(testsuites junit.Suites) {
 			report.Tests++
 		}
 	}
+
 	w := tabwriter.NewWriter(os.Stdout, 0, 0, 1, ' ', 0)
 
 	// Print the test report
@@ -144,6 +147,7 @@ func PrettyPrinter(testsuites junit.Suites) {
 	for _, tc := range report.TestCases {
 		fmt.Fprintf(w, "%s\t\t%s\t\t\t%s\n", tc.Name, tc.Status, tc.Message)
 	}
+
 	w.Flush()
 
 	fmt.Println("----------------------------------------------------------------------------")

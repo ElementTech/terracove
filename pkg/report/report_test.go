@@ -129,9 +129,11 @@ func TestCreateJunitStruct(t *testing.T) {
 	if suite.Name != "module1" {
 		t.Errorf("CreateJunitStruct returned a suite with name %s, expected 'module1'", suite.Name)
 	}
+
 	if suite.Tests != 1 {
 		t.Errorf("CreateJunitStruct returned a suite with %d tests, expected 1", suite.Tests)
 	}
+
 	if suite.Failures != 1 {
 		t.Errorf("CreateJunitStruct returned a suite with %d failures, expected 1", suite.Failures)
 	}
@@ -141,6 +143,7 @@ func TestCreateJunitStruct(t *testing.T) {
 	if result.Name != "resource1" {
 		t.Errorf("CreateJunitStruct returned a result with name %s, expected 'resource1'", result.Name)
 	}
+
 	if result.Time != 1.0 {
 		t.Errorf("CreateJunitStruct returned a result with time %f, expected 1.0", result.Time)
 	}

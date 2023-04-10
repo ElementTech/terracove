@@ -54,7 +54,11 @@ func Execute(version string, testing bool) error {
 }
 
 func run(cmd *cobra.Command, args []string) error {
-	scan.TerraformModulesTerratest(args, OutputOptions, ValidateOptions, RecursiveOptions)
+	err := scan.TerraformModulesTerratest(args, OutputOptions, ValidateOptions, RecursiveOptions)
+
+	if err != nil {
+		return err
+	}
 
 	return nil
 }

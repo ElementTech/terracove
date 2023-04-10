@@ -42,10 +42,13 @@ func TestCheckModuleType(t *testing.T) {
 	terrFile := filepath.Join(dir, "terragrunt.hcl")
 	terraformFile := filepath.Join(dir, "main.tf")
 	_, err := os.Create(terrFile)
+
 	if err != nil {
 		fmt.Println(err)
 	}
+
 	_, err = os.Create(terraformFile)
+
 	if err != nil {
 		fmt.Println(err)
 	}

@@ -105,6 +105,7 @@ func TerraformModulesTerratest(paths []string, OutputOptions types.OutputOptions
 					if moduleType == "" {
 						return
 					}
+
 					tfOptions := &terraform.Options{
 						TerraformDir:    dir,
 						TerraformBinary: moduleType,
@@ -127,9 +128,12 @@ func TerraformModulesTerratest(paths []string, OutputOptions types.OutputOptions
 						if err == nil {
 							// res.RawPlan = plan.RawPlan
 							resourceCount := len(plan.ResourceChangesMap)
+
 							var resourceCountExists uint
 							var resourceCountDiff uint
+
 							actionCount := map[tfjson.Action]int{}
+
 							for _, change := range plan.ResourceChangesMap {
 								action := change.Change.Actions[0]
 								if action == tfjson.ActionCreate || action == tfjson.ActionUpdate || action == tfjson.ActionDelete {
@@ -139,6 +143,7 @@ func TerraformModulesTerratest(paths []string, OutputOptions types.OutputOptions
 								}
 								actionCount[action]++
 							}
+
 							res.ResourceCount = uint(resourceCount)
 							res.ResourceCountExists = resourceCountExists
 							res.ResourceCountDiff = resourceCountDiff
@@ -152,6 +157,7 @@ func TerraformModulesTerratest(paths []string, OutputOptions types.OutputOptions
 							res.Error = err
 						}
 					}
+
 					mu.Lock()
 					results = append(results, res)
 					mu.Unlock()
@@ -172,7 +178,9 @@ func TerraformModulesTerratest(paths []string, OutputOptions types.OutputOptions
 	}
 
 	wg.Wait()
+
 	junitStruct, err := report.CreateJunitStruct(statuses)
+
 	if err != nil {
 		fmt.Println(err)
 
