@@ -45,14 +45,14 @@ brew tap jatalocks/jatalocks
 brew install terracove
 ```
 
-Or, you can install directly from release:
-```sh
-curl -sS https://raw.githubusercontent.com/jatalocks/terracove/main/install.sh | bash
-```
-
 If you'd like to use Docker, you can use the official image:
 ```sh
 docker run --rm -v $(pwd):/data ghcr.io/jatalocks/terracove /data --json --junit
+```
+
+Or, you can install directly from release:
+```sh
+curl -sS https://raw.githubusercontent.com/jatalocks/terracove/main/install.sh | bash
 ```
 ## Usage
 
