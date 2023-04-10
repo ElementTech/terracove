@@ -82,6 +82,7 @@ Flags:
 
 ```sh
 git clone https://github.com/jatalocks/terracove.git
+cd terracove
 terracove --junit --json . # Same as terracove --junit --json examples
 ```
 
