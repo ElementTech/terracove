@@ -89,7 +89,6 @@
           li a {
             display: block;
             text-align: center;
-            padding: 16px;
             text-decoration: none;
           }
           .centered{
@@ -105,22 +104,22 @@
 
 
 <hr>
-<p>75% Coverage</p>
-<p>Tuesday, Apr 11, 2023 at 4:19pm</p>
-<h4>Path: examples/terraform</h4>
+<p>50% Coverage</p>
+<p>Tuesday, Apr 11, 2023 at 4:20pm</p>
+<h4>Path: examples/terragrunt</h4>
 
 <div
-    class='passed pad'>
-    <a href='#examplesterraformsuccess'>
-        examples/terraform/success <span class='badge'>Pass</span>
+    class='skipped pad'>
+    <a href='#examplesterragruntnoresources'>
+        examples/terragrunt/no-resources <span class='badge'>Skip</span>
     </a>
 
     <ul class="centered">
         <li><a>Coverage: 100%</a></li>
-        <li><a>ResourceCount: 2</a></li>
-        <li><a>ResourceCountExists: 2</a></li>
+        <li><a>ResourceCount: 0</a></li>
+        <li><a>ResourceCountExists: 0</a></li>
         <li><a>ResourceCountDiff: 0</a></li>
-        <li><a>ActionNoopCount: 2</a></li>
+        <li><a>ActionNoopCount: 0</a></li>
         <li><a>ActionCreateCount: 0</a></li>
         <li><a>ActionReadCount: 0</a></li>
         <li><a>ActionUpdateCount: 0</a></li>
@@ -128,20 +127,89 @@
       </ul>
 
     
-    <div class='expando' id='examplesterraformsuccess'>
+    <div class='expando' id='examplesterragruntnoresources'>
         <div class='content'><code>
-            [0m[1mlocal_file.example: Refreshing state... [id=943a702d06f34599aee1f8da8ef9f7296031d699][0m
-[0m[1mlocal_file.example2: Refreshing state... [id=eba8f1df91816c6e3c9bec7506fe550156e662a3][0m
+            
+[0m[1mInitializing the backend...[0m
 
-[0m[1m[32mNo changes.[0m[1m Your infrastructure matches the configuration.[0m
+[0m[1mInitializing provider plugins...[0m
 
-[0mTerraform has compared your real infrastructure against your configuration
-and found no differences, so no changes are needed.
+[0m[1m[32mTerraform has been successfully initialized![0m[32m[0m
+[0m[32m
+You may now begin working with Terraform. Try running &#34;terraform plan&#34; to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.[0m
+
+Changes to Outputs:
+  [32m&#43;[0m[0m output = &#34;one input another input&#34;
+
+You can apply this plan to save these new output values to the Terraform
+state, without changing any real infrastructure.
+[90m
+─────────────────────────────────────────────────────────────────────────────[0m
+
+Saved the plan to: .terracove.plan
+
+To perform exactly these actions, run the following command to apply:
+    terraform apply &#34;.terracove.plan&#34;
         </code>
         </div>
-        <p class='duration' title='Test duration'>1.079497022s</p>
+        <p class='duration' title='Test duration'>957.623083ms</p>
     </div>
 </div>
+
+<div
+    class='failed pad'>
+    <a href='#examplesterragrunterror'>
+        examples/terragrunt/error <span class='badge'>Error</span>
+    </a>
+
+    <ul class="centered">
+        <li><a>Coverage: 0%</a></li>
+        <li><a>ResourceCount: 0</a></li>
+        <li><a>ResourceCountExists: 0</a></li>
+        <li><a>ResourceCountDiff: 0</a></li>
+        <li><a>ActionNoopCount: 0</a></li>
+        <li><a>ActionCreateCount: 0</a></li>
+        <li><a>ActionReadCount: 0</a></li>
+        <li><a>ActionUpdateCount: 0</a></li>
+        <li><a>ActionDeleteCount: 0</a></li>
+      </ul>
+
+    
+    <div class='expando' id='examplesterragrunterror'>
+        <div class='content'><code>
+            FatalError{Underlying: error while running command: exit status 1; [31m╷[0m[0m
+[31m│[0m [0m[1m[31mError: [0m[0m[1mReference to undeclared input variable[0m
+[31m│[0m [0m
+[31m│[0m [0m[0m  on main.tf line 4, in output &#34;output&#34;:
+[31m│[0m [0m   4:   value = &#34;${var.input} ${[4mvar.other_input[0m}&#34;[0m
+[31m│[0m [0m
+[31m│[0m [0mAn input variable with the name &#34;other_input&#34; has not been declared. This
+[31m│[0m [0mvariable can be declared with a variable &#34;other_input&#34; {} block.
+[31m╵[0m[0m
+time=2023-04-11T16:20:59&#43;03:00 level=error msg=Terraform invocation failed in /Users/amitai.getzler/Desktop/Explorium/projects/terracove/examples/terragrunt/error
+time=2023-04-11T16:20:59&#43;03:00 level=error msg=1 error occurred:
+	* exit status 1
+
+}
+        </code>
+        </div>
+        <p class='duration' title='Test duration'>1.54037921s</p>
+    </div>
+</div>
+
+
+
+
+<hr>
+<p>75% Coverage</p>
+<p>Tuesday, Apr 11, 2023 at 4:20pm</p>
+<h4>Path: examples/terraform</h4>
 
 <div
     class='failed pad'>
@@ -197,30 +265,22 @@ To perform exactly these actions, run the following command to apply:
     terraform apply &#34;.terracove.plan&#34;
         </code>
         </div>
-        <p class='duration' title='Test duration'>1.084051845s</p>
+        <p class='duration' title='Test duration'>1.564452806s</p>
     </div>
 </div>
 
-
-
-
-<hr>
-<p>50% Coverage</p>
-<p>Tuesday, Apr 11, 2023 at 4:19pm</p>
-<h4>Path: examples/terragrunt</h4>
-
 <div
-    class='skipped pad'>
-    <a href='#examplesterragruntnoresources'>
-        examples/terragrunt/no-resources <span class='badge'>Skip</span>
+    class='passed pad'>
+    <a href='#examplesterraformsuccess'>
+        examples/terraform/success <span class='badge'>Pass</span>
     </a>
 
     <ul class="centered">
         <li><a>Coverage: 100%</a></li>
-        <li><a>ResourceCount: 0</a></li>
-        <li><a>ResourceCountExists: 0</a></li>
+        <li><a>ResourceCount: 2</a></li>
+        <li><a>ResourceCountExists: 2</a></li>
         <li><a>ResourceCountDiff: 0</a></li>
-        <li><a>ActionNoopCount: 0</a></li>
+        <li><a>ActionNoopCount: 2</a></li>
         <li><a>ActionCreateCount: 0</a></li>
         <li><a>ActionReadCount: 0</a></li>
         <li><a>ActionUpdateCount: 0</a></li>
@@ -228,79 +288,18 @@ To perform exactly these actions, run the following command to apply:
       </ul>
 
     
-    <div class='expando' id='examplesterragruntnoresources'>
+    <div class='expando' id='examplesterraformsuccess'>
         <div class='content'><code>
-            
-[0m[1mInitializing the backend...[0m
+            [0m[1mlocal_file.example2: Refreshing state... [id=eba8f1df91816c6e3c9bec7506fe550156e662a3][0m
+[0m[1mlocal_file.example: Refreshing state... [id=943a702d06f34599aee1f8da8ef9f7296031d699][0m
 
-[0m[1mInitializing provider plugins...[0m
+[0m[1m[32mNo changes.[0m[1m Your infrastructure matches the configuration.[0m
 
-[0m[1m[32mTerraform has been successfully initialized![0m[32m[0m
-[0m[32m
-You may now begin working with Terraform. Try running &#34;terraform plan&#34; to see
-any changes that are required for your infrastructure. All Terraform commands
-should now work.
-
-If you ever set or change modules or backend configuration for Terraform,
-rerun this command to reinitialize your working directory. If you forget, other
-commands will detect it and remind you to do so if necessary.[0m
-
-Changes to Outputs:
-  [32m&#43;[0m[0m output = &#34;one input another input&#34;
-
-You can apply this plan to save these new output values to the Terraform
-state, without changing any real infrastructure.
-[90m
-─────────────────────────────────────────────────────────────────────────────[0m
-
-Saved the plan to: .terracove.plan
-
-To perform exactly these actions, run the following command to apply:
-    terraform apply &#34;.terracove.plan&#34;
+[0mTerraform has compared your real infrastructure against your configuration
+and found no differences, so no changes are needed.
         </code>
         </div>
-        <p class='duration' title='Test duration'>958.071595ms</p>
-    </div>
-</div>
-
-<div
-    class='failed pad'>
-    <a href='#examplesterragrunterror'>
-        examples/terragrunt/error <span class='badge'>Error</span>
-    </a>
-
-    <ul class="centered">
-        <li><a>Coverage: 0%</a></li>
-        <li><a>ResourceCount: 0</a></li>
-        <li><a>ResourceCountExists: 0</a></li>
-        <li><a>ResourceCountDiff: 0</a></li>
-        <li><a>ActionNoopCount: 0</a></li>
-        <li><a>ActionCreateCount: 0</a></li>
-        <li><a>ActionReadCount: 0</a></li>
-        <li><a>ActionUpdateCount: 0</a></li>
-        <li><a>ActionDeleteCount: 0</a></li>
-      </ul>
-
-    
-    <div class='expando' id='examplesterragrunterror'>
-        <div class='content'><code>
-            FatalError{Underlying: error while running command: exit status 1; [31m╷[0m[0m
-[31m│[0m [0m[1m[31mError: [0m[0m[1mReference to undeclared input variable[0m
-[31m│[0m [0m
-[31m│[0m [0m[0m  on main.tf line 4, in output &#34;output&#34;:
-[31m│[0m [0m   4:   value = &#34;${var.input} ${[4mvar.other_input[0m}&#34;[0m
-[31m│[0m [0m
-[31m│[0m [0mAn input variable with the name &#34;other_input&#34; has not been declared. This
-[31m│[0m [0mvariable can be declared with a variable &#34;other_input&#34; {} block.
-[31m╵[0m[0m
-time=2023-04-11T16:20:01&#43;03:00 level=error msg=Terraform invocation failed in /Users/amitai.getzler/Desktop/Explorium/projects/terracove/examples/terragrunt/error
-time=2023-04-11T16:20:01&#43;03:00 level=error msg=1 error occurred:
-	* exit status 1
-
-}
-        </code>
-        </div>
-        <p class='duration' title='Test duration'>2.129236775s</p>
+        <p class='duration' title='Test duration'>1.585172138s</p>
     </div>
 </div>
 
