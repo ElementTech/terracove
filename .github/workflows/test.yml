@@ -37,8 +37,7 @@ jobs:
         uses: eLco/setup-terragrunt@v1.0.2
 
       - name: Run coverage
-        run: |
-          go test -v -race $(go list ./... | grep -v /vendor/) -v -coverprofile=coverage.out
+        run: go test -race -coverprofile="coverage.out" -covermode=atomic ./...
 
       - name: Upload coverage to Codecov
         if: matrix.os == 'ubuntu-latest'
