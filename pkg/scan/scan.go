@@ -77,7 +77,7 @@ func TerraformModulesTerratest(paths []string, OutputOptions types.OutputOptions
 	timestamp := time.Now().Format(time.RFC3339)
 	var statuses []types.TerraformModuleStatus
 	var wg sync.WaitGroup
-
+	fmt.Println(dirsMap)
 	for root, v := range dirsMap {
 		wg.Add(1)
 		go func(root string, v []string) {
