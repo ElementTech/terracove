@@ -90,11 +90,11 @@ Flags:
 ```sh
 git clone https://github.com/jatalocks/terracove.git
 cd terracove
-terracove --minimal --junit --json . 
+terracove --minimal --junit --json --html . 
 # . == examples == examples/terraform examples/terragrunt
 ```
 
-Open the **terracove.xml** or **terracove.json** and observe the results. You should see the following:
+Open the **terracove.xml**, **terracove.json** or **terracove.html** and observe the results. You should see the following:
 
 ```json
 [
