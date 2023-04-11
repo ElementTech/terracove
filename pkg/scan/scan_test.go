@@ -133,7 +133,7 @@ func TestAveragePercentage(t *testing.T) {
 func TestTerraformModulesTerratest(t *testing.T) {
 	// Define some example input values
 	paths := []string{"../../examples"}
-	outputOptions := types.OutputOptions{Junit: true, JunitOutPath: "../../test.xml", Json: true, JsonOutPath: "../../test.json"}
+	outputOptions := types.OutputOptions{Junit: true, HTML: false, JunitOutPath: "../../test.xml", Json: true, JsonOutPath: "../../test.json", HTMLOutPath: "../../test.html"}
 	validateOptions := types.ValidateOptions{
 		ValidateTerragruntBy: "terragrunt.hcl",
 		ValidateTerraformBy:  "main.tf",
@@ -145,6 +145,7 @@ func TestTerraformModulesTerratest(t *testing.T) {
 	result := TerraformModulesTerratest(paths, outputOptions, validateOptions, recursiveOptions)
 	os.Remove("../../test.xml")
 	os.Remove("../../test.json")
+	// os.Remove("../../test.html")
 	// Check that the actual result matches the expected output
 	assert.Nil(t, result)
 }
