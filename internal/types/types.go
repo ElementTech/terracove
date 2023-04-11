@@ -2,13 +2,19 @@ package types
 
 import (
 	"time"
+
+	tfjson "github.com/hashicorp/terraform-json"
+	// tfjson "github.com/hashicorp/terraform-json"
 )
 
 type OutputOptions struct {
-	Json bool
+	Json    bool
+	Minimal bool
+	HTML    bool
 	// Yaml         bool
 	Junit       bool
 	JsonOutPath string
+	HTMLOutPath string
 	// YamlOutPath  string
 	JunitOutPath string
 }
@@ -39,13 +45,15 @@ type TestCase struct {
 
 type Result struct {
 	Path                string
-	Error               error
+	Error               string
 	ResourceCount       uint
 	ResourceCountExists uint
 	ResourceCountDiff   uint
 	Coverage            float64
 	Duration            time.Duration
-	// RawPlan             tfjson.Plan
+	PlanJSON            tfjson.Plan
+	PlanRaw             string
+
 	ActionNoopCount   uint
 	ActionCreateCount uint
 	ActionReadCount   uint

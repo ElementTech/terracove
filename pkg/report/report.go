@@ -27,6 +27,7 @@ func CreateCoverageXML(suitesRoot junit.Suites, path string) error {
 	}
 	return nil
 }
+
 func CreateJson(suitesRoot []types.TerraformModuleStatus, path string) error {
 
 	file, err := json.MarshalIndent(suitesRoot, "", " ")
@@ -63,12 +64,11 @@ func CreateJunitStruct(terraformStatuses []types.TerraformModuleStatus) (junit.S
 		suites := junit.Suite{
 			Name:     ts.Path,
 			Tests:    len(ts.Results),
-			Failures: linq.From(ts.Results).WhereT(func(r types.Result) bool { return r.ResourceCountDiff > 0 || r.Error != nil }).Count(),
+			Failures: linq.From(ts.Results).WhereT(func(r types.Result) bool { return r.ResourceCountDiff > 0 || r.Error != "" }).Count(),
 			Time:     linq.From(ts.Results).SelectT(func(r types.Result) float64 { return r.Duration.Seconds() }).Max().(float64),
 		}
 
 		for _, r := range ts.Results {
-			// rawPlanBytes, _ := json.Marshal(r.RawPlan)
 
 			testCase := junit.Result{
 				Name: r.Path,
@@ -82,15 +82,16 @@ func CreateJunitStruct(terraformStatuses []types.TerraformModuleStatus) (junit.S
 			testCase.SetProperty("create", fmt.Sprint(r.ActionCreateCount))
 			testCase.SetProperty("noop", fmt.Sprint(r.ActionNoopCount))
 			testCase.SetProperty("coverage", fmt.Sprint(r.Coverage))
-
 			switch {
-			case r.Error != nil:
+			case r.Error != "":
 				testCase.Errored = &junit.Errored{Message: "module has planning error"}
-				// *testCase.Error = fmt.Sprint(rawPlanBytes)
+				testCase.Errored.Value = r.PlanRaw
 			case r.ResourceCount == 0:
 				testCase.Skipped = &junit.Skipped{Message: "module does not contain any resources"}
+				testCase.Skipped.Value = r.PlanRaw
 			case r.Coverage != 100:
 				testCase.Failure = &junit.Failure{Message: fmt.Sprintf("module has %v resources with diff", r.ResourceCountDiff)}
+				testCase.Failure.Value = r.PlanRaw
 			}
 			suites.Results = append(suites.Results, testCase)
 		}
@@ -100,8 +101,7 @@ func CreateJunitStruct(terraformStatuses []types.TerraformModuleStatus) (junit.S
 	return suitesRoot, nil
 }
 
-func PrettyPrinter(testsuites junit.Suites) {
-	// Build the test report
+func CreateTestReport(testsuites junit.Suites) types.TestReport {
 	var report types.TestReport
 	report.Name = "\nTerraform Diff Report"
 	report.Tests = 0
@@ -133,6 +133,12 @@ func PrettyPrinter(testsuites junit.Suites) {
 			report.Tests++
 		}
 	}
+	return report
+}
+
+func PrettyPrinter(testsuites junit.Suites) {
+	// Build the test report
+	report := CreateTestReport(testsuites)
 	w := tabwriter.NewWriter(os.Stdout, 0, 0, 1, ' ', 0)
 
 	// Print the test report

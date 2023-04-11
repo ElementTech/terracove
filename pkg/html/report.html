@@ -1,0 +1,140 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: "Helvetica", sans-serif;
+            margin: 16px 64px
+        }
+
+        h4 {
+            padding: 4px 8px;
+        }
+
+
+        .coverage {
+            font-size: small;
+            font-weight: normal;
+        }
+
+        a {
+            padding: 8px 8px;
+            color: black;
+            text-decoration: none;
+            display: block;
+            border: thin #eeeeee solid;
+        }
+
+
+        .passed a {
+            background-color: #dfd;
+        }
+
+        .skipped a {
+            background-color: #eee;
+        }
+
+        .failed a {
+            background-color: #fdd;
+        }
+
+        .badge {
+            background-color: #888;
+            color: white;
+            border-radius: 4px;
+            padding: 2px 8px;
+            float: right;
+        }
+
+        .passed .badge {
+            background-color: #5c5;
+        }
+
+        .skipped .badge {}
+
+        .failed .badge {
+            background-color: #d66;
+        }
+
+        .expando {
+            display: none;
+        }
+
+        .content {
+
+            border-bottom: thin #eeeeee solid;
+            color: #444;
+            white-space:pre-wrap;
+        }
+
+        .duration {
+            font-size: x-small;
+        }
+
+        .expando:target {
+            display: block
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+          }
+          
+          li {
+            float:left;
+          }
+          
+          li a {
+            display: block;
+            text-align: center;
+            padding: 16px;
+            text-decoration: none;
+          }
+          .centered{
+            justify-content: center;
+          }
+          
+    </style>
+</head>
+{{range .}}
+{{ $timestamp := .Timestamp }}
+{{ $path := .Path }}
+<hr>
+<p>{{.Coverage}}% Coverage</p>
+<p>{{$timestamp |formatTime}}</p>
+<h4>Path: {{$path}}</h4>
+{{range .Results}}
+<div
+    class='{{if or .Error (not (eq .ResourceCountDiff 0))}}failed{{else if eq .ResourceCount 0}}skipped{{else}}passed{{end}}'>
+    <a href='#{{.Path | strip}}'>
+        {{.Path}} <span class='badge'>{{if .Error}}Error{{else if (not (eq .ResourceCountDiff 0))}}Fail{{else if eq
+            .ResourceCount 0}}Skip{{else}}Pass{{end}}</span>
+    </a>
+
+    <ul class="centered">
+        <li><a>ResourceCount: {{.ResourceCount}}</a></li>
+        <li><a>ResourceCountExists: {{.ResourceCountExists}}</a></li>
+        <li><a>ResourceCountDiff: {{.ResourceCountDiff}}</a></li>
+        <li><a>ActionNoopCount: {{.ActionNoopCount}}</a></li>
+        <li><a>ActionCreateCount: {{.ActionCreateCount}}</a></li>
+        <li><a>ActionReadCount: {{.ActionReadCount}}</a></li>
+        <li><a>ActionUpdateCount: {{.ActionUpdateCount}}</a></li>
+        <li><a>ActionDeleteCount: {{.ActionDeleteCount}}</a></li>
+      </ul>
+
+    
+    <div class='expando' id='{{.Path | strip}}'>
+        <div class='content'><code>
+            {{.PlanRaw}}
+        </code>
+        </div>
+        <p class='duration' title='Test duration'>{{.Duration}}</p>
+    </div>
+</div>
+{{end}}
+{{end}}
+</body>
+
+</html>

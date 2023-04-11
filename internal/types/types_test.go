@@ -38,7 +38,7 @@ func TestTypes(t *testing.T) {
 	t.Run("Result", func(t *testing.T) {
 		r := Result{
 			Path:                "/path/to/module",
-			Error:               nil,
+			Error:               "",
 			ResourceCount:       10,
 			ResourceCountExists: 5,
 			ResourceCountDiff:   3,

@@ -16,6 +16,7 @@ import (
 	"github.com/gruntwork-io/terratest/modules/terraform"
 	tfjson "github.com/hashicorp/terraform-json"
 	"github.com/jatalocks/terracove/internal/types"
+	"github.com/jatalocks/terracove/pkg/html"
 	"github.com/jatalocks/terracove/pkg/report"
 	"golang.org/x/exp/slices"
 )
@@ -105,16 +106,30 @@ func TerraformModulesTerratest(paths []string, OutputOptions types.OutputOptions
 					spinner := spinner.New(spinner.CharSets[33], 100*time.Millisecond)
 					spinner.Suffix = fmt.Sprintf(" %v: ", dir)
 					spinner.Start()
-					_, err := terraform.InitAndPlanE(&testingContext, tfOptions)
+					output, err := terraform.InitAndPlanE(&testingContext, tfOptions)
+
 					res := types.Result{
 						Path:     dir,
-						Error:    err,
 						Duration: time.Since(now),
 					}
-					if res.Error == nil {
+					if err != nil {
+						res.Error = err.Error()
+
+					}
+					if !OutputOptions.Minimal {
+						if err != nil {
+							res.PlanRaw = err.Error()
+						} else {
+							res.PlanRaw = output
+						}
+					}
+
+					if res.Error == "" {
 						plan, err := terraform.ShowWithStructE(&testingContext, tfOptions)
+						if !OutputOptions.Minimal {
+							res.PlanJSON = plan.RawPlan
+						}
 						if err == nil {
-							// res.RawPlan = plan.RawPlan
 							resourceCount := len(plan.ResourceChangesMap)
 							var resourceCountExists uint
 							var resourceCountDiff uint
@@ -137,10 +152,10 @@ func TerraformModulesTerratest(paths []string, OutputOptions types.OutputOptions
 							res.ActionUpdateCount = uint(actionCount[tfjson.ActionUpdate])
 							res.ActionDeleteCount = uint(actionCount[tfjson.ActionDelete])
 							res.Coverage = float64(percentage(float64(resourceCountExists), float64(resourceCount)))
-						} else {
-							res.Error = err
 						}
+
 					}
+
 					mu.Lock()
 					results = append(results, res)
 					mu.Unlock()
@@ -178,6 +193,14 @@ func TerraformModulesTerratest(paths []string, OutputOptions types.OutputOptions
 			return err
 		} else {
 			fmt.Printf("%v created succesfully\n", OutputOptions.JsonOutPath)
+		}
+	}
+	if OutputOptions.HTML {
+		if err := html.CreateHTML(statuses, OutputOptions.HTMLOutPath); err != nil {
+			fmt.Println("Error while creating JSON: ", err)
+			return err
+		} else {
+			fmt.Printf("%v created succesfully\n", OutputOptions.HTMLOutPath)
 		}
 	}
 	// if OutputOptions.Yaml {
