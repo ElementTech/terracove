@@ -95,6 +95,9 @@
           .centered{
             justify-content: center;
           }
+          .pad {
+            padding-bottom: 1em;
+          }
           
     </style>
 </head>
@@ -107,7 +110,7 @@
 <h4>Path: {{$path}}</h4>
 {{range .Results}}
 <div
-    class='{{if or .Error (not (eq .ResourceCountDiff 0))}}failed{{else if eq .ResourceCount 0}}skipped{{else}}passed{{end}}'>
+    class='{{if or .Error (not (eq .ResourceCountDiff 0))}}failed{{else if eq .ResourceCount 0}}skipped{{else}}passed{{end}} pad'>
     <a href='#{{.Path | strip}}'>
         {{.Path}} <span class='badge'>{{if .Error}}Error{{else if (not (eq .ResourceCountDiff 0))}}Fail{{else if eq
             .ResourceCount 0}}Skip{{else}}Pass{{end}}</span>
