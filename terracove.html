@@ -19,7 +19,7 @@
         }
 
         a {
-            padding: 8px 8px;
+            padding: 8px;
             color: black;
             text-decoration: none;
             display: block;
@@ -62,10 +62,10 @@
         }
 
         .content {
-
+            margin-left: 1em;
             border-bottom: thin #eeeeee solid;
             color: #444;
-            white-space:pre-wrap;
+            white-space: pre-wrap;
         }
 
         .duration {
@@ -75,61 +75,111 @@
         .expando:target {
             display: block
         }
+
         ul {
             list-style-type: none;
             margin: 0;
             padding: 0;
             overflow: hidden;
-          }
-          
-          li {
-            float:left;
-          }
-          
-          li a {
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
             display: block;
             text-align: center;
             text-decoration: none;
-          }
-          .centered{
+        }
+
+        .centered {
+            justify-items: center;
             justify-content: center;
-          }
-          .pad {
+            align-items: stretch;
+        }
+
+        .pad {
             padding-bottom: 1em;
-          }
-          
+        }
+
+        .card {
+            display: flex;
+            align-content: space-around;
+            justify-content: space-around;
+        }
+
+        .container {
+            border-right: 1px solid rgb(172, 172, 172);
+            border-left: 1px solid rgb(172, 172, 172);
+            margin-bottom: 1em;
+        }
     </style>
 </head>
 
-
-
-<hr>
-<p>50% Coverage</p>
-<p>Tuesday, Apr 11, 2023 at 4:20pm</p>
-<h4>Path: examples/terragrunt</h4>
-
-<div
-    class='skipped pad'>
-    <a href='#examplesterragruntnoresources'>
-        examples/terragrunt/no-resources <span class='badge'>Skip</span>
-    </a>
-
-    <ul class="centered">
-        <li><a>Coverage: 100%</a></li>
-        <li><a>ResourceCount: 0</a></li>
-        <li><a>ResourceCountExists: 0</a></li>
-        <li><a>ResourceCountDiff: 0</a></li>
-        <li><a>ActionNoopCount: 0</a></li>
-        <li><a>ActionCreateCount: 0</a></li>
-        <li><a>ActionReadCount: 0</a></li>
-        <li><a>ActionUpdateCount: 0</a></li>
-        <li><a>ActionDeleteCount: 0</a></li>
-      </ul>
-
+<div class="container">
     
-    <div class='expando' id='examplesterragruntnoresources'>
-        <div class='content'><code>
-            
+    
+    <div class="card">
+        <h5>50% Coverage</h5>
+        <h3>examples/terragrunt</h3>
+        <h5>Tuesday, Apr 11, 2023 at 6:28pm</h5>
+    </div>
+    <hr>
+    
+    <div
+        class='skipped pad'>
+        <a href='#examplesterragruntnoresources'>
+            examples/terragrunt/no-resources
+            <span class='badge'>
+                Skip
+            </span>
+        </a>
+
+        <ul class="centered">
+            <li>
+                <a class="flexed" href='#examplesterragruntnoresources'>Coverage:
+                    100%</a>
+            </li>
+            <li>
+                <a class="flexed" href='#examplesterragruntnoresources'>ResourceCount:
+                    0</a>
+            </li>
+            <li>
+                <a class="flexed" href='#examplesterragruntnoresources'>ResourceCountExists:
+                    0</a>
+            </li>
+            <li>
+                <a class="flexed" href='#examplesterragruntnoresources'>ResourceCountDiff:
+                    0</a>
+            </li>
+            <li>
+                <a class="flexed" href='#examplesterragruntnoresources'>ActionNoopCount:
+                    0</a>
+            </li>
+            <li>
+                <a class="flexed" href='#examplesterragruntnoresources'>ActionCreateCount:
+                    0</a>
+            </li>
+            <li>
+                <a class="flexed" href='#examplesterragruntnoresources'>ActionReadCount:
+                    0</a>
+            </li>
+            <li>
+                <a class="flexed" href='#examplesterragruntnoresources'>ActionUpdateCount:
+                    0</a>
+            </li>
+            <li>
+                <a class="flexed" href='#examplesterragruntnoresources'>ActionDeleteCount:
+                    0</a>
+            </li>
+        </ul>
+
+
+        <div class='expando' id='examplesterragruntnoresources'>
+            <div class='content'>
+                <code>
+                                
 [0m[1mInitializing the backend...[0m
 
 [0m[1mInitializing provider plugins...[0m
@@ -156,34 +206,65 @@ Saved the plan to: .terracove.plan
 
 To perform exactly these actions, run the following command to apply:
     terraform apply &#34;.terracove.plan&#34;
-        </code>
+                            </code>
+            </div>
+            <p class='duration' title='Test duration'>877.160545ms</p>
         </div>
-        <p class='duration' title='Test duration'>957.623083ms</p>
     </div>
-</div>
-
-<div
-    class='failed pad'>
-    <a href='#examplesterragrunterror'>
-        examples/terragrunt/error <span class='badge'>Error</span>
-    </a>
-
-    <ul class="centered">
-        <li><a>Coverage: 0%</a></li>
-        <li><a>ResourceCount: 0</a></li>
-        <li><a>ResourceCountExists: 0</a></li>
-        <li><a>ResourceCountDiff: 0</a></li>
-        <li><a>ActionNoopCount: 0</a></li>
-        <li><a>ActionCreateCount: 0</a></li>
-        <li><a>ActionReadCount: 0</a></li>
-        <li><a>ActionUpdateCount: 0</a></li>
-        <li><a>ActionDeleteCount: 0</a></li>
-      </ul>
-
     
-    <div class='expando' id='examplesterragrunterror'>
-        <div class='content'><code>
-            FatalError{Underlying: error while running command: exit status 1; [31m╷[0m[0m
+    <div
+        class='failed pad'>
+        <a href='#examplesterragrunterror'>
+            examples/terragrunt/error
+            <span class='badge'>
+                Error
+            </span>
+        </a>
+
+        <ul class="centered">
+            <li>
+                <a class="flexed" href='#examplesterragrunterror'>Coverage:
+                    0%</a>
+            </li>
+            <li>
+                <a class="flexed" href='#examplesterragrunterror'>ResourceCount:
+                    0</a>
+            </li>
+            <li>
+                <a class="flexed" href='#examplesterragrunterror'>ResourceCountExists:
+                    0</a>
+            </li>
+            <li>
+                <a class="flexed" href='#examplesterragrunterror'>ResourceCountDiff:
+                    0</a>
+            </li>
+            <li>
+                <a class="flexed" href='#examplesterragrunterror'>ActionNoopCount:
+                    0</a>
+            </li>
+            <li>
+                <a class="flexed" href='#examplesterragrunterror'>ActionCreateCount:
+                    0</a>
+            </li>
+            <li>
+                <a class="flexed" href='#examplesterragrunterror'>ActionReadCount:
+                    0</a>
+            </li>
+            <li>
+                <a class="flexed" href='#examplesterragrunterror'>ActionUpdateCount:
+                    0</a>
+            </li>
+            <li>
+                <a class="flexed" href='#examplesterragrunterror'>ActionDeleteCount:
+                    0</a>
+            </li>
+        </ul>
+
+
+        <div class='expando' id='examplesterragrunterror'>
+            <div class='content'>
+                <code>
+                                FatalError{Underlying: error while running command: exit status 1; [31m╷[0m[0m
 [31m│[0m [0m[1m[31mError: [0m[0m[1mReference to undeclared input variable[0m
 [31m│[0m [0m
 [31m│[0m [0m[0m  on main.tf line 4, in output &#34;output&#34;:
@@ -192,47 +273,82 @@ To perform exactly these actions, run the following command to apply:
 [31m│[0m [0mAn input variable with the name &#34;other_input&#34; has not been declared. This
 [31m│[0m [0mvariable can be declared with a variable &#34;other_input&#34; {} block.
 [31m╵[0m[0m
-time=2023-04-11T16:20:59&#43;03:00 level=error msg=Terraform invocation failed in /Users/amitai.getzler/Desktop/Explorium/projects/terracove/examples/terragrunt/error
-time=2023-04-11T16:20:59&#43;03:00 level=error msg=1 error occurred:
+time=2023-04-11T18:28:16&#43;03:00 level=error msg=Terraform invocation failed in /Users/amitai.getzler/Desktop/Explorium/projects/terracove/examples/terragrunt/error
+time=2023-04-11T18:28:16&#43;03:00 level=error msg=1 error occurred:
 	* exit status 1
 
 }
-        </code>
+                            </code>
+            </div>
+            <p class='duration' title='Test duration'>1.353318565s</p>
         </div>
-        <p class='duration' title='Test duration'>1.54037921s</p>
     </div>
+    
 </div>
 
-
-
-
-<hr>
-<p>75% Coverage</p>
-<p>Tuesday, Apr 11, 2023 at 4:20pm</p>
-<h4>Path: examples/terraform</h4>
-
-<div
-    class='failed pad'>
-    <a href='#examplesterraformtfstatediff'>
-        examples/terraform/tfstate-diff <span class='badge'>Fail</span>
-    </a>
-
-    <ul class="centered">
-        <li><a>Coverage: 50%</a></li>
-        <li><a>ResourceCount: 2</a></li>
-        <li><a>ResourceCountExists: 1</a></li>
-        <li><a>ResourceCountDiff: 1</a></li>
-        <li><a>ActionNoopCount: 1</a></li>
-        <li><a>ActionCreateCount: 1</a></li>
-        <li><a>ActionReadCount: 0</a></li>
-        <li><a>ActionUpdateCount: 0</a></li>
-        <li><a>ActionDeleteCount: 0</a></li>
-      </ul>
-
+<div class="container">
     
-    <div class='expando' id='examplesterraformtfstatediff'>
-        <div class='content'><code>
-            [0m[1mlocal_file.example: Refreshing state... [id=943a702d06f34599aee1f8da8ef9f7296031d699][0m
+    
+    <div class="card">
+        <h5>75% Coverage</h5>
+        <h3>examples/terraform</h3>
+        <h5>Tuesday, Apr 11, 2023 at 6:28pm</h5>
+    </div>
+    <hr>
+    
+    <div
+        class='failed pad'>
+        <a href='#examplesterraformtfstatediff'>
+            examples/terraform/tfstate-diff
+            <span class='badge'>
+                Fail
+            </span>
+        </a>
+
+        <ul class="centered">
+            <li>
+                <a class="flexed" href='#examplesterraformtfstatediff'>Coverage:
+                    50%</a>
+            </li>
+            <li>
+                <a class="flexed" href='#examplesterraformtfstatediff'>ResourceCount:
+                    2</a>
+            </li>
+            <li>
+                <a class="flexed" href='#examplesterraformtfstatediff'>ResourceCountExists:
+                    1</a>
+            </li>
+            <li>
+                <a class="flexed" href='#examplesterraformtfstatediff'>ResourceCountDiff:
+                    1</a>
+            </li>
+            <li>
+                <a class="flexed" href='#examplesterraformtfstatediff'>ActionNoopCount:
+                    1</a>
+            </li>
+            <li>
+                <a class="flexed" href='#examplesterraformtfstatediff'>ActionCreateCount:
+                    1</a>
+            </li>
+            <li>
+                <a class="flexed" href='#examplesterraformtfstatediff'>ActionReadCount:
+                    0</a>
+            </li>
+            <li>
+                <a class="flexed" href='#examplesterraformtfstatediff'>ActionUpdateCount:
+                    0</a>
+            </li>
+            <li>
+                <a class="flexed" href='#examplesterraformtfstatediff'>ActionDeleteCount:
+                    0</a>
+            </li>
+        </ul>
+
+
+        <div class='expando' id='examplesterraformtfstatediff'>
+            <div class='content'>
+                <code>
+                                [0m[1mlocal_file.example: Refreshing state... [id=943a702d06f34599aee1f8da8ef9f7296031d699][0m
 
 Terraform used the selected providers to generate the following execution
 plan. Resource actions are indicated with the following symbols:
@@ -263,47 +379,82 @@ Saved the plan to: .terracove.plan
 
 To perform exactly these actions, run the following command to apply:
     terraform apply &#34;.terracove.plan&#34;
-        </code>
+                            </code>
+            </div>
+            <p class='duration' title='Test duration'>1.35871013s</p>
         </div>
-        <p class='duration' title='Test duration'>1.564452806s</p>
     </div>
-</div>
-
-<div
-    class='passed pad'>
-    <a href='#examplesterraformsuccess'>
-        examples/terraform/success <span class='badge'>Pass</span>
-    </a>
-
-    <ul class="centered">
-        <li><a>Coverage: 100%</a></li>
-        <li><a>ResourceCount: 2</a></li>
-        <li><a>ResourceCountExists: 2</a></li>
-        <li><a>ResourceCountDiff: 0</a></li>
-        <li><a>ActionNoopCount: 2</a></li>
-        <li><a>ActionCreateCount: 0</a></li>
-        <li><a>ActionReadCount: 0</a></li>
-        <li><a>ActionUpdateCount: 0</a></li>
-        <li><a>ActionDeleteCount: 0</a></li>
-      </ul>
-
     
-    <div class='expando' id='examplesterraformsuccess'>
-        <div class='content'><code>
-            [0m[1mlocal_file.example2: Refreshing state... [id=eba8f1df91816c6e3c9bec7506fe550156e662a3][0m
+    <div
+        class='passed pad'>
+        <a href='#examplesterraformsuccess'>
+            examples/terraform/success
+            <span class='badge'>
+                Pass
+                
+            </span>
+        </a>
+
+        <ul class="centered">
+            <li>
+                <a class="flexed" href='#examplesterraformsuccess'>Coverage:
+                    100%</a>
+            </li>
+            <li>
+                <a class="flexed" href='#examplesterraformsuccess'>ResourceCount:
+                    2</a>
+            </li>
+            <li>
+                <a class="flexed" href='#examplesterraformsuccess'>ResourceCountExists:
+                    2</a>
+            </li>
+            <li>
+                <a class="flexed" href='#examplesterraformsuccess'>ResourceCountDiff:
+                    0</a>
+            </li>
+            <li>
+                <a class="flexed" href='#examplesterraformsuccess'>ActionNoopCount:
+                    2</a>
+            </li>
+            <li>
+                <a class="flexed" href='#examplesterraformsuccess'>ActionCreateCount:
+                    0</a>
+            </li>
+            <li>
+                <a class="flexed" href='#examplesterraformsuccess'>ActionReadCount:
+                    0</a>
+            </li>
+            <li>
+                <a class="flexed" href='#examplesterraformsuccess'>ActionUpdateCount:
+                    0</a>
+            </li>
+            <li>
+                <a class="flexed" href='#examplesterraformsuccess'>ActionDeleteCount:
+                    0</a>
+            </li>
+        </ul>
+
+
+        <div class='expando' id='examplesterraformsuccess'>
+            <div class='content'>
+                <code>
+                                [0m[1mlocal_file.example2: Refreshing state... [id=eba8f1df91816c6e3c9bec7506fe550156e662a3][0m
 [0m[1mlocal_file.example: Refreshing state... [id=943a702d06f34599aee1f8da8ef9f7296031d699][0m
 
 [0m[1m[32mNo changes.[0m[1m Your infrastructure matches the configuration.[0m
 
 [0mTerraform has compared your real infrastructure against your configuration
 and found no differences, so no changes are needed.
-        </code>
+                            </code>
+            </div>
+            <p class='duration' title='Test duration'>1.358734304s</p>
         </div>
-        <p class='duration' title='Test duration'>1.585172138s</p>
     </div>
+    
 </div>
 
 
+</html>
 </body>
 
 </html>
