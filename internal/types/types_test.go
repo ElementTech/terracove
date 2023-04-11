@@ -38,7 +38,7 @@ func TestTypes(t *testing.T) {
 	t.Run("Result", func(t *testing.T) {
 		r := Result{
 			Path:                "/path/to/module",
-			Error:               nil,
+			Error:               "",
 			ResourceCount:       10,
 			ResourceCountExists: 5,
 			ResourceCountDiff:   3,
@@ -53,7 +53,7 @@ func TestTypes(t *testing.T) {
 		}
 
 		assert.Equal(t, "/path/to/module", r.Path)
-		assert.Nil(t, r.Error)
+		assert.Empty(t, r.Error)
 		assert.Equal(t, uint(10), r.ResourceCount)
 		assert.Equal(t, uint(5), r.ResourceCountExists)
 		assert.Equal(t, uint(3), r.ResourceCountDiff)

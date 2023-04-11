@@ -13,3 +13,4 @@ terraform.tfstate.backup
 /terracove.json
 /terracove.yaml
 /terracove.xml
+/terracove.html

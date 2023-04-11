@@ -1,0 +1,698 @@
+[
+ {
+  "Timestamp": "2023-04-11T18:43:55+03:00",
+  "Path": ".",
+  "Results": [
+   {
+    "Path": "examples/terragrunt/no-resources",
+    "Error": "",
+    "ResourceCount": 0,
+    "ResourceCountExists": 0,
+    "ResourceCountDiff": 0,
+    "Coverage": 100,
+    "Duration": 1317304889,
+    "PlanJSON": {
+     "format_version": "1.1",
+     "terraform_version": "1.4.2",
+     "variables": {
+      "input": {
+       "value": "one input"
+      },
+      "other_input": {
+       "value": "another input"
+      }
+     },
+     "planned_values": {
+      "outputs": {
+       "output": {
+        "sensitive": false,
+        "value": "one input another input",
+        "type": "string"
+       }
+      },
+      "root_module": {}
+     },
+     "output_changes": {
+      "output": {
+       "actions": [
+        "create"
+       ],
+       "before": null,
+       "after": "one input another input",
+       "after_unknown": false,
+       "before_sensitive": false,
+       "after_sensitive": false
+      }
+     },
+     "prior_state": {
+      "format_version": "1.0",
+      "terraform_version": "1.4.2",
+      "values": {
+       "outputs": {
+        "output": {
+         "sensitive": false,
+         "value": "one input another input",
+         "type": "string"
+        }
+       },
+       "root_module": {}
+      }
+     },
+     "configuration": {
+      "root_module": {
+       "outputs": {
+        "output": {
+         "expression": {
+          "references": [
+           "var.input",
+           "var.other_input"
+          ]
+         }
+        }
+       },
+       "variables": {
+        "input": {},
+        "other_input": {}
+       }
+      }
+     }
+    },
+    "PlanRaw": "\n\u001b[0m\u001b[1mInitializing the backend...\u001b[0m\n\n\u001b[0m\u001b[1mInitializing provider plugins...\u001b[0m\n\n\u001b[0m\u001b[1m\u001b[32mTerraform has been successfully initialized!\u001b[0m\u001b[32m\u001b[0m\n\u001b[0m\u001b[32m\nYou may now begin working with Terraform. Try running \"terraform plan\" to see\nany changes that are required for your infrastructure. All Terraform commands\nshould now work.\n\nIf you ever set or change modules or backend configuration for Terraform,\nrerun this command to reinitialize your working directory. If you forget, other\ncommands will detect it and remind you to do so if necessary.\u001b[0m\n\nChanges to Outputs:\n  \u001b[32m+\u001b[0m\u001b[0m output = \"one input another input\"\n\nYou can apply this plan to save these new output values to the Terraform\nstate, without changing any real infrastructure.\n\u001b[90m\n─────────────────────────────────────────────────────────────────────────────\u001b[0m\n\nSaved the plan to: .terracove.plan\n\nTo perform exactly these actions, run the following command to apply:\n    terraform apply \".terracove.plan\"",
+    "ActionNoopCount": 0,
+    "ActionCreateCount": 0,
+    "ActionReadCount": 0,
+    "ActionUpdateCount": 0,
+    "ActionDeleteCount": 0
+   },
+   {
+    "Path": "examples/terragrunt/error",
+    "Error": "FatalError{Underlying: error while running command: exit status 1; \u001b[31m╷\u001b[0m\u001b[0m\n\u001b[31m│\u001b[0m \u001b[0m\u001b[1m\u001b[31mError: \u001b[0m\u001b[0m\u001b[1mReference to undeclared input variable\u001b[0m\n\u001b[31m│\u001b[0m \u001b[0m\n\u001b[31m│\u001b[0m \u001b[0m\u001b[0m  on main.tf line 4, in output \"output\":\n\u001b[31m│\u001b[0m \u001b[0m   4:   value = \"${var.input} ${\u001b[4mvar.other_input\u001b[0m}\"\u001b[0m\n\u001b[31m│\u001b[0m \u001b[0m\n\u001b[31m│\u001b[0m \u001b[0mAn input variable with the name \"other_input\" has not been declared. This\n\u001b[31m│\u001b[0m \u001b[0mvariable can be declared with a variable \"other_input\" {} block.\n\u001b[31m╵\u001b[0m\u001b[0m\ntime=2023-04-11T18:43:57+03:00 level=error msg=Terraform invocation failed in /Users/amitai.getzler/Desktop/Explorium/projects/terracove/examples/terragrunt/error\ntime=2023-04-11T18:43:57+03:00 level=error msg=1 error occurred:\n\t* exit status 1\n\n}",
+    "ResourceCount": 0,
+    "ResourceCountExists": 0,
+    "ResourceCountDiff": 0,
+    "Coverage": 0,
+    "Duration": 1880412659,
+    "PlanJSON": {},
+    "PlanRaw": "FatalError{Underlying: error while running command: exit status 1; \u001b[31m╷\u001b[0m\u001b[0m\n\u001b[31m│\u001b[0m \u001b[0m\u001b[1m\u001b[31mError: \u001b[0m\u001b[0m\u001b[1mReference to undeclared input variable\u001b[0m\n\u001b[31m│\u001b[0m \u001b[0m\n\u001b[31m│\u001b[0m \u001b[0m\u001b[0m  on main.tf line 4, in output \"output\":\n\u001b[31m│\u001b[0m \u001b[0m   4:   value = \"${var.input} ${\u001b[4mvar.other_input\u001b[0m}\"\u001b[0m\n\u001b[31m│\u001b[0m \u001b[0m\n\u001b[31m│\u001b[0m \u001b[0mAn input variable with the name \"other_input\" has not been declared. This\n\u001b[31m│\u001b[0m \u001b[0mvariable can be declared with a variable \"other_input\" {} block.\n\u001b[31m╵\u001b[0m\u001b[0m\ntime=2023-04-11T18:43:57+03:00 level=error msg=Terraform invocation failed in /Users/amitai.getzler/Desktop/Explorium/projects/terracove/examples/terragrunt/error\ntime=2023-04-11T18:43:57+03:00 level=error msg=1 error occurred:\n\t* exit status 1\n\n}",
+    "ActionNoopCount": 0,
+    "ActionCreateCount": 0,
+    "ActionReadCount": 0,
+    "ActionUpdateCount": 0,
+    "ActionDeleteCount": 0
+   },
+   {
+    "Path": "examples/terraform/success",
+    "Error": "",
+    "ResourceCount": 2,
+    "ResourceCountExists": 2,
+    "ResourceCountDiff": 0,
+    "Coverage": 100,
+    "Duration": 1935250789,
+    "PlanJSON": {
+     "format_version": "1.1",
+     "terraform_version": "1.4.2",
+     "planned_values": {
+      "outputs": {
+       "hello_world": {
+        "sensitive": false,
+        "value": "Hello, World!",
+        "type": "string"
+       }
+      },
+      "root_module": {
+       "resources": [
+        {
+         "address": "local_file.example",
+         "mode": "managed",
+         "type": "local_file",
+         "name": "example",
+         "provider_name": "registry.terraform.io/hashicorp/local",
+         "schema_version": 0,
+         "values": {
+          "content": "Hello, world!",
+          "content_base64": null,
+          "content_base64sha256": "MV9b23bQeMQ7isAGTkoBZGErH853yGk0W/yUx1iU7dM=",
+          "content_base64sha512": "wVJ82JPBJHc9gRkRlwyP5uhX1t9dySJr2KFgYUwM2WOk3eorlLt9NgIe+dhl1c6ilKgt1JoLsmn1H256V/eUIQ==",
+          "content_md5": "6cd3556deb0da54bca060b4c39479839",
+          "content_sha1": "943a702d06f34599aee1f8da8ef9f7296031d699",
+          "content_sha256": "315f5bdb76d078c43b8ac0064e4a0164612b1fce77c869345bfc94c75894edd3",
+          "content_sha512": "c1527cd893c124773d811911970c8fe6e857d6df5dc9226bd8a160614c0cd963a4ddea2b94bb7d36021ef9d865d5cea294a82dd49a0bb269f51f6e7a57f79421",
+          "directory_permission": "0777",
+          "file_permission": "0777",
+          "filename": "./example.txt",
+          "id": "943a702d06f34599aee1f8da8ef9f7296031d699",
+          "sensitive_content": null,
+          "source": null
+         },
+         "sensitive_values": {}
+        },
+        {
+         "address": "local_file.example2",
+         "mode": "managed",
+         "type": "local_file",
+         "name": "example2",
+         "provider_name": "registry.terraform.io/hashicorp/local",
+         "schema_version": 0,
+         "values": {
+          "content": "I am applied!",
+          "content_base64": null,
+          "content_base64sha256": "4WcVQSuvfavY8PssZKiBYJLc73HHAiPebp5lLrHZQMI=",
+          "content_base64sha512": "5PlxweFFC9cjj36Ae1Rjr/UdsguJh209DxODdJ3tllC722uEW3cdfS61F1iIC7zBNXDqr2PfI6NDNYL7V279LQ==",
+          "content_md5": "2b45a3421034c84bfbae1435a12c4b0d",
+          "content_sha1": "eba8f1df91816c6e3c9bec7506fe550156e662a3",
+          "content_sha256": "e16715412baf7dabd8f0fb2c64a8816092dcef71c70223de6e9e652eb1d940c2",
+          "content_sha512": "e4f971c1e1450bd7238f7e807b5463aff51db20b89876d3d0f1383749ded9650bbdb6b845b771d7d2eb51758880bbcc13570eaaf63df23a3433582fb576efd2d",
+          "directory_permission": "0777",
+          "file_permission": "0777",
+          "filename": "./applied.txt",
+          "id": "eba8f1df91816c6e3c9bec7506fe550156e662a3",
+          "sensitive_content": null,
+          "source": null
+         },
+         "sensitive_values": {}
+        }
+       ]
+      }
+     },
+     "resource_changes": [
+      {
+       "address": "local_file.example",
+       "mode": "managed",
+       "type": "local_file",
+       "name": "example",
+       "provider_name": "registry.terraform.io/hashicorp/local",
+       "change": {
+        "actions": [
+         "no-op"
+        ],
+        "before": {
+         "content": "Hello, world!",
+         "content_base64": null,
+         "content_base64sha256": "MV9b23bQeMQ7isAGTkoBZGErH853yGk0W/yUx1iU7dM=",
+         "content_base64sha512": "wVJ82JPBJHc9gRkRlwyP5uhX1t9dySJr2KFgYUwM2WOk3eorlLt9NgIe+dhl1c6ilKgt1JoLsmn1H256V/eUIQ==",
+         "content_md5": "6cd3556deb0da54bca060b4c39479839",
+         "content_sha1": "943a702d06f34599aee1f8da8ef9f7296031d699",
+         "content_sha256": "315f5bdb76d078c43b8ac0064e4a0164612b1fce77c869345bfc94c75894edd3",
+         "content_sha512": "c1527cd893c124773d811911970c8fe6e857d6df5dc9226bd8a160614c0cd963a4ddea2b94bb7d36021ef9d865d5cea294a82dd49a0bb269f51f6e7a57f79421",
+         "directory_permission": "0777",
+         "file_permission": "0777",
+         "filename": "./example.txt",
+         "id": "943a702d06f34599aee1f8da8ef9f7296031d699",
+         "sensitive_content": null,
+         "source": null
+        },
+        "after": {
+         "content": "Hello, world!",
+         "content_base64": null,
+         "content_base64sha256": "MV9b23bQeMQ7isAGTkoBZGErH853yGk0W/yUx1iU7dM=",
+         "content_base64sha512": "wVJ82JPBJHc9gRkRlwyP5uhX1t9dySJr2KFgYUwM2WOk3eorlLt9NgIe+dhl1c6ilKgt1JoLsmn1H256V/eUIQ==",
+         "content_md5": "6cd3556deb0da54bca060b4c39479839",
+         "content_sha1": "943a702d06f34599aee1f8da8ef9f7296031d699",
+         "content_sha256": "315f5bdb76d078c43b8ac0064e4a0164612b1fce77c869345bfc94c75894edd3",
+         "content_sha512": "c1527cd893c124773d811911970c8fe6e857d6df5dc9226bd8a160614c0cd963a4ddea2b94bb7d36021ef9d865d5cea294a82dd49a0bb269f51f6e7a57f79421",
+         "directory_permission": "0777",
+         "file_permission": "0777",
+         "filename": "./example.txt",
+         "id": "943a702d06f34599aee1f8da8ef9f7296031d699",
+         "sensitive_content": null,
+         "source": null
+        },
+        "after_unknown": {},
+        "before_sensitive": {
+         "sensitive_content": true
+        },
+        "after_sensitive": {
+         "sensitive_content": true
+        }
+       }
+      },
+      {
+       "address": "local_file.example2",
+       "mode": "managed",
+       "type": "local_file",
+       "name": "example2",
+       "provider_name": "registry.terraform.io/hashicorp/local",
+       "change": {
+        "actions": [
+         "no-op"
+        ],
+        "before": {
+         "content": "I am applied!",
+         "content_base64": null,
+         "content_base64sha256": "4WcVQSuvfavY8PssZKiBYJLc73HHAiPebp5lLrHZQMI=",
+         "content_base64sha512": "5PlxweFFC9cjj36Ae1Rjr/UdsguJh209DxODdJ3tllC722uEW3cdfS61F1iIC7zBNXDqr2PfI6NDNYL7V279LQ==",
+         "content_md5": "2b45a3421034c84bfbae1435a12c4b0d",
+         "content_sha1": "eba8f1df91816c6e3c9bec7506fe550156e662a3",
+         "content_sha256": "e16715412baf7dabd8f0fb2c64a8816092dcef71c70223de6e9e652eb1d940c2",
+         "content_sha512": "e4f971c1e1450bd7238f7e807b5463aff51db20b89876d3d0f1383749ded9650bbdb6b845b771d7d2eb51758880bbcc13570eaaf63df23a3433582fb576efd2d",
+         "directory_permission": "0777",
+         "file_permission": "0777",
+         "filename": "./applied.txt",
+         "id": "eba8f1df91816c6e3c9bec7506fe550156e662a3",
+         "sensitive_content": null,
+         "source": null
+        },
+        "after": {
+         "content": "I am applied!",
+         "content_base64": null,
+         "content_base64sha256": "4WcVQSuvfavY8PssZKiBYJLc73HHAiPebp5lLrHZQMI=",
+         "content_base64sha512": "5PlxweFFC9cjj36Ae1Rjr/UdsguJh209DxODdJ3tllC722uEW3cdfS61F1iIC7zBNXDqr2PfI6NDNYL7V279LQ==",
+         "content_md5": "2b45a3421034c84bfbae1435a12c4b0d",
+         "content_sha1": "eba8f1df91816c6e3c9bec7506fe550156e662a3",
+         "content_sha256": "e16715412baf7dabd8f0fb2c64a8816092dcef71c70223de6e9e652eb1d940c2",
+         "content_sha512": "e4f971c1e1450bd7238f7e807b5463aff51db20b89876d3d0f1383749ded9650bbdb6b845b771d7d2eb51758880bbcc13570eaaf63df23a3433582fb576efd2d",
+         "directory_permission": "0777",
+         "file_permission": "0777",
+         "filename": "./applied.txt",
+         "id": "eba8f1df91816c6e3c9bec7506fe550156e662a3",
+         "sensitive_content": null,
+         "source": null
+        },
+        "after_unknown": {},
+        "before_sensitive": {
+         "sensitive_content": true
+        },
+        "after_sensitive": {
+         "sensitive_content": true
+        }
+       }
+      }
+     ],
+     "output_changes": {
+      "hello_world": {
+       "actions": [
+        "no-op"
+       ],
+       "before": "Hello, World!",
+       "after": "Hello, World!",
+       "after_unknown": false,
+       "before_sensitive": false,
+       "after_sensitive": false
+      }
+     },
+     "prior_state": {
+      "format_version": "1.0",
+      "terraform_version": "1.4.2",
+      "values": {
+       "outputs": {
+        "hello_world": {
+         "sensitive": false,
+         "value": "Hello, World!",
+         "type": "string"
+        }
+       },
+       "root_module": {
+        "resources": [
+         {
+          "address": "local_file.example",
+          "mode": "managed",
+          "type": "local_file",
+          "name": "example",
+          "provider_name": "registry.terraform.io/hashicorp/local",
+          "schema_version": 0,
+          "values": {
+           "content": "Hello, world!",
+           "content_base64": null,
+           "content_base64sha256": "MV9b23bQeMQ7isAGTkoBZGErH853yGk0W/yUx1iU7dM=",
+           "content_base64sha512": "wVJ82JPBJHc9gRkRlwyP5uhX1t9dySJr2KFgYUwM2WOk3eorlLt9NgIe+dhl1c6ilKgt1JoLsmn1H256V/eUIQ==",
+           "content_md5": "6cd3556deb0da54bca060b4c39479839",
+           "content_sha1": "943a702d06f34599aee1f8da8ef9f7296031d699",
+           "content_sha256": "315f5bdb76d078c43b8ac0064e4a0164612b1fce77c869345bfc94c75894edd3",
+           "content_sha512": "c1527cd893c124773d811911970c8fe6e857d6df5dc9226bd8a160614c0cd963a4ddea2b94bb7d36021ef9d865d5cea294a82dd49a0bb269f51f6e7a57f79421",
+           "directory_permission": "0777",
+           "file_permission": "0777",
+           "filename": "./example.txt",
+           "id": "943a702d06f34599aee1f8da8ef9f7296031d699",
+           "sensitive_content": null,
+           "source": null
+          },
+          "sensitive_values": {}
+         },
+         {
+          "address": "local_file.example2",
+          "mode": "managed",
+          "type": "local_file",
+          "name": "example2",
+          "provider_name": "registry.terraform.io/hashicorp/local",
+          "schema_version": 0,
+          "values": {
+           "content": "I am applied!",
+           "content_base64": null,
+           "content_base64sha256": "4WcVQSuvfavY8PssZKiBYJLc73HHAiPebp5lLrHZQMI=",
+           "content_base64sha512": "5PlxweFFC9cjj36Ae1Rjr/UdsguJh209DxODdJ3tllC722uEW3cdfS61F1iIC7zBNXDqr2PfI6NDNYL7V279LQ==",
+           "content_md5": "2b45a3421034c84bfbae1435a12c4b0d",
+           "content_sha1": "eba8f1df91816c6e3c9bec7506fe550156e662a3",
+           "content_sha256": "e16715412baf7dabd8f0fb2c64a8816092dcef71c70223de6e9e652eb1d940c2",
+           "content_sha512": "e4f971c1e1450bd7238f7e807b5463aff51db20b89876d3d0f1383749ded9650bbdb6b845b771d7d2eb51758880bbcc13570eaaf63df23a3433582fb576efd2d",
+           "directory_permission": "0777",
+           "file_permission": "0777",
+           "filename": "./applied.txt",
+           "id": "eba8f1df91816c6e3c9bec7506fe550156e662a3",
+           "sensitive_content": null,
+           "source": null
+          },
+          "sensitive_values": {}
+         }
+        ]
+       }
+      }
+     },
+     "configuration": {
+      "provider_config": {
+       "local": {
+        "name": "local",
+        "full_name": "registry.terraform.io/hashicorp/local"
+       }
+      },
+      "root_module": {
+       "outputs": {
+        "hello_world": {
+         "expression": {
+          "constant_value": "Hello, World!"
+         }
+        }
+       },
+       "resources": [
+        {
+         "address": "local_file.example",
+         "mode": "managed",
+         "type": "local_file",
+         "name": "example",
+         "provider_config_key": "local",
+         "expressions": {
+          "content": {
+           "constant_value": "Hello, world!"
+          },
+          "filename": {
+           "references": [
+            "path.module"
+           ]
+          }
+         },
+         "schema_version": 0
+        },
+        {
+         "address": "local_file.example2",
+         "mode": "managed",
+         "type": "local_file",
+         "name": "example2",
+         "provider_config_key": "local",
+         "expressions": {
+          "content": {
+           "constant_value": "I am applied!"
+          },
+          "filename": {
+           "references": [
+            "path.module"
+           ]
+          }
+         },
+         "schema_version": 0
+        }
+       ]
+      }
+     }
+    },
+    "PlanRaw": "\u001b[0m\u001b[1mlocal_file.example2: Refreshing state... [id=eba8f1df91816c6e3c9bec7506fe550156e662a3]\u001b[0m\n\u001b[0m\u001b[1mlocal_file.example: Refreshing state... [id=943a702d06f34599aee1f8da8ef9f7296031d699]\u001b[0m\n\n\u001b[0m\u001b[1m\u001b[32mNo changes.\u001b[0m\u001b[1m Your infrastructure matches the configuration.\u001b[0m\n\n\u001b[0mTerraform has compared your real infrastructure against your configuration\nand found no differences, so no changes are needed.",
+    "ActionNoopCount": 2,
+    "ActionCreateCount": 0,
+    "ActionReadCount": 0,
+    "ActionUpdateCount": 0,
+    "ActionDeleteCount": 0
+   },
+   {
+    "Path": "examples/terraform/tfstate-diff",
+    "Error": "",
+    "ResourceCount": 2,
+    "ResourceCountExists": 1,
+    "ResourceCountDiff": 1,
+    "Coverage": 50,
+    "Duration": 1942997389,
+    "PlanJSON": {
+     "format_version": "1.1",
+     "terraform_version": "1.4.2",
+     "planned_values": {
+      "outputs": {
+       "hello_world": {
+        "sensitive": false,
+        "value": "Hello, World!",
+        "type": "string"
+       }
+      },
+      "root_module": {
+       "resources": [
+        {
+         "address": "local_file.example",
+         "mode": "managed",
+         "type": "local_file",
+         "name": "example",
+         "provider_name": "registry.terraform.io/hashicorp/local",
+         "schema_version": 0,
+         "values": {
+          "content": "Hello, world!",
+          "content_base64": null,
+          "content_base64sha256": "MV9b23bQeMQ7isAGTkoBZGErH853yGk0W/yUx1iU7dM=",
+          "content_base64sha512": "wVJ82JPBJHc9gRkRlwyP5uhX1t9dySJr2KFgYUwM2WOk3eorlLt9NgIe+dhl1c6ilKgt1JoLsmn1H256V/eUIQ==",
+          "content_md5": "6cd3556deb0da54bca060b4c39479839",
+          "content_sha1": "943a702d06f34599aee1f8da8ef9f7296031d699",
+          "content_sha256": "315f5bdb76d078c43b8ac0064e4a0164612b1fce77c869345bfc94c75894edd3",
+          "content_sha512": "c1527cd893c124773d811911970c8fe6e857d6df5dc9226bd8a160614c0cd963a4ddea2b94bb7d36021ef9d865d5cea294a82dd49a0bb269f51f6e7a57f79421",
+          "directory_permission": "0777",
+          "file_permission": "0777",
+          "filename": "./example.txt",
+          "id": "943a702d06f34599aee1f8da8ef9f7296031d699",
+          "sensitive_content": null,
+          "source": null
+         },
+         "sensitive_values": {}
+        },
+        {
+         "address": "local_file.example2",
+         "mode": "managed",
+         "type": "local_file",
+         "name": "example2",
+         "provider_name": "registry.terraform.io/hashicorp/local",
+         "schema_version": 0,
+         "values": {
+          "content": "I am not applied :(",
+          "content_base64": null,
+          "directory_permission": "0777",
+          "file_permission": "0777",
+          "filename": "./not_applied.txt",
+          "sensitive_content": null,
+          "source": null
+         },
+         "sensitive_values": {}
+        }
+       ]
+      }
+     },
+     "resource_changes": [
+      {
+       "address": "local_file.example",
+       "mode": "managed",
+       "type": "local_file",
+       "name": "example",
+       "provider_name": "registry.terraform.io/hashicorp/local",
+       "change": {
+        "actions": [
+         "no-op"
+        ],
+        "before": {
+         "content": "Hello, world!",
+         "content_base64": null,
+         "content_base64sha256": "MV9b23bQeMQ7isAGTkoBZGErH853yGk0W/yUx1iU7dM=",
+         "content_base64sha512": "wVJ82JPBJHc9gRkRlwyP5uhX1t9dySJr2KFgYUwM2WOk3eorlLt9NgIe+dhl1c6ilKgt1JoLsmn1H256V/eUIQ==",
+         "content_md5": "6cd3556deb0da54bca060b4c39479839",
+         "content_sha1": "943a702d06f34599aee1f8da8ef9f7296031d699",
+         "content_sha256": "315f5bdb76d078c43b8ac0064e4a0164612b1fce77c869345bfc94c75894edd3",
+         "content_sha512": "c1527cd893c124773d811911970c8fe6e857d6df5dc9226bd8a160614c0cd963a4ddea2b94bb7d36021ef9d865d5cea294a82dd49a0bb269f51f6e7a57f79421",
+         "directory_permission": "0777",
+         "file_permission": "0777",
+         "filename": "./example.txt",
+         "id": "943a702d06f34599aee1f8da8ef9f7296031d699",
+         "sensitive_content": null,
+         "source": null
+        },
+        "after": {
+         "content": "Hello, world!",
+         "content_base64": null,
+         "content_base64sha256": "MV9b23bQeMQ7isAGTkoBZGErH853yGk0W/yUx1iU7dM=",
+         "content_base64sha512": "wVJ82JPBJHc9gRkRlwyP5uhX1t9dySJr2KFgYUwM2WOk3eorlLt9NgIe+dhl1c6ilKgt1JoLsmn1H256V/eUIQ==",
+         "content_md5": "6cd3556deb0da54bca060b4c39479839",
+         "content_sha1": "943a702d06f34599aee1f8da8ef9f7296031d699",
+         "content_sha256": "315f5bdb76d078c43b8ac0064e4a0164612b1fce77c869345bfc94c75894edd3",
+         "content_sha512": "c1527cd893c124773d811911970c8fe6e857d6df5dc9226bd8a160614c0cd963a4ddea2b94bb7d36021ef9d865d5cea294a82dd49a0bb269f51f6e7a57f79421",
+         "directory_permission": "0777",
+         "file_permission": "0777",
+         "filename": "./example.txt",
+         "id": "943a702d06f34599aee1f8da8ef9f7296031d699",
+         "sensitive_content": null,
+         "source": null
+        },
+        "after_unknown": {},
+        "before_sensitive": {
+         "sensitive_content": true
+        },
+        "after_sensitive": {
+         "sensitive_content": true
+        }
+       }
+      },
+      {
+       "address": "local_file.example2",
+       "mode": "managed",
+       "type": "local_file",
+       "name": "example2",
+       "provider_name": "registry.terraform.io/hashicorp/local",
+       "change": {
+        "actions": [
+         "create"
+        ],
+        "before": null,
+        "after": {
+         "content": "I am not applied :(",
+         "content_base64": null,
+         "directory_permission": "0777",
+         "file_permission": "0777",
+         "filename": "./not_applied.txt",
+         "sensitive_content": null,
+         "source": null
+        },
+        "after_unknown": {
+         "content_base64sha256": true,
+         "content_base64sha512": true,
+         "content_md5": true,
+         "content_sha1": true,
+         "content_sha256": true,
+         "content_sha512": true,
+         "id": true
+        },
+        "before_sensitive": false,
+        "after_sensitive": {
+         "sensitive_content": true
+        }
+       }
+      }
+     ],
+     "output_changes": {
+      "hello_world": {
+       "actions": [
+        "no-op"
+       ],
+       "before": "Hello, World!",
+       "after": "Hello, World!",
+       "after_unknown": false,
+       "before_sensitive": false,
+       "after_sensitive": false
+      }
+     },
+     "prior_state": {
+      "format_version": "1.0",
+      "terraform_version": "1.4.2",
+      "values": {
+       "outputs": {
+        "hello_world": {
+         "sensitive": false,
+         "value": "Hello, World!",
+         "type": "string"
+        }
+       },
+       "root_module": {
+        "resources": [
+         {
+          "address": "local_file.example",
+          "mode": "managed",
+          "type": "local_file",
+          "name": "example",
+          "provider_name": "registry.terraform.io/hashicorp/local",
+          "schema_version": 0,
+          "values": {
+           "content": "Hello, world!",
+           "content_base64": null,
+           "content_base64sha256": "MV9b23bQeMQ7isAGTkoBZGErH853yGk0W/yUx1iU7dM=",
+           "content_base64sha512": "wVJ82JPBJHc9gRkRlwyP5uhX1t9dySJr2KFgYUwM2WOk3eorlLt9NgIe+dhl1c6ilKgt1JoLsmn1H256V/eUIQ==",
+           "content_md5": "6cd3556deb0da54bca060b4c39479839",
+           "content_sha1": "943a702d06f34599aee1f8da8ef9f7296031d699",
+           "content_sha256": "315f5bdb76d078c43b8ac0064e4a0164612b1fce77c869345bfc94c75894edd3",
+           "content_sha512": "c1527cd893c124773d811911970c8fe6e857d6df5dc9226bd8a160614c0cd963a4ddea2b94bb7d36021ef9d865d5cea294a82dd49a0bb269f51f6e7a57f79421",
+           "directory_permission": "0777",
+           "file_permission": "0777",
+           "filename": "./example.txt",
+           "id": "943a702d06f34599aee1f8da8ef9f7296031d699",
+           "sensitive_content": null,
+           "source": null
+          },
+          "sensitive_values": {}
+         }
+        ]
+       }
+      }
+     },
+     "configuration": {
+      "provider_config": {
+       "local": {
+        "name": "local",
+        "full_name": "registry.terraform.io/hashicorp/local"
+       }
+      },
+      "root_module": {
+       "outputs": {
+        "hello_world": {
+         "expression": {
+          "constant_value": "Hello, World!"
+         }
+        }
+       },
+       "resources": [
+        {
+         "address": "local_file.example",
+         "mode": "managed",
+         "type": "local_file",
+         "name": "example",
+         "provider_config_key": "local",
+         "expressions": {
+          "content": {
+           "constant_value": "Hello, world!"
+          },
+          "filename": {
+           "references": [
+            "path.module"
+           ]
+          }
+         },
+         "schema_version": 0
+        },
+        {
+         "address": "local_file.example2",
+         "mode": "managed",
+         "type": "local_file",
+         "name": "example2",
+         "provider_config_key": "local",
+         "expressions": {
+          "content": {
+           "constant_value": "I am not applied :("
+          },
+          "filename": {
+           "references": [
+            "path.module"
+           ]
+          }
+         },
+         "schema_version": 0
+        }
+       ]
+      }
+     }
+    },
+    "PlanRaw": "\u001b[0m\u001b[1mlocal_file.example: Refreshing state... [id=943a702d06f34599aee1f8da8ef9f7296031d699]\u001b[0m\n\nTerraform used the selected providers to generate the following execution\nplan. Resource actions are indicated with the following symbols:\n  \u001b[32m+\u001b[0m create\u001b[0m\n\nTerraform will perform the following actions:\n\n\u001b[1m  # local_file.example2\u001b[0m will be created\n\u001b[0m  \u001b[32m+\u001b[0m\u001b[0m resource \"local_file\" \"example2\" {\n      \u001b[32m+\u001b[0m\u001b[0m content              = \"I am not applied :(\"\n      \u001b[32m+\u001b[0m\u001b[0m content_base64sha256 = (known after apply)\n      \u001b[32m+\u001b[0m\u001b[0m content_base64sha512 = (known after apply)\n      \u001b[32m+\u001b[0m\u001b[0m content_md5          = (known after apply)\n      \u001b[32m+\u001b[0m\u001b[0m content_sha1         = (known after apply)\n      \u001b[32m+\u001b[0m\u001b[0m content_sha256       = (known after apply)\n      \u001b[32m+\u001b[0m\u001b[0m content_sha512       = (known after apply)\n      \u001b[32m+\u001b[0m\u001b[0m directory_permission = \"0777\"\n      \u001b[32m+\u001b[0m\u001b[0m file_permission      = \"0777\"\n      \u001b[32m+\u001b[0m\u001b[0m filename             = \"./not_applied.txt\"\n      \u001b[32m+\u001b[0m\u001b[0m id                   = (known after apply)\n    }\n\n\u001b[1mPlan:\u001b[0m 1 to add, 0 to change, 0 to destroy.\n\u001b[0m\u001b[90m\n─────────────────────────────────────────────────────────────────────────────\u001b[0m\n\nSaved the plan to: .terracove.plan\n\nTo perform exactly these actions, run the following command to apply:\n    terraform apply \".terracove.plan\"",
+    "ActionNoopCount": 1,
+    "ActionCreateCount": 1,
+    "ActionReadCount": 0,
+    "ActionUpdateCount": 0,
+    "ActionDeleteCount": 0
+   }
+  ],
+  "Coverage": 62.5
+ }
+]

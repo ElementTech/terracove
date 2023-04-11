@@ -1,6 +1,5 @@
 
 <h1 align="center">
-  <br>
   <img src="./assets/logo/logo.png" alt="terracove" width="200">
 </h1>
 
@@ -25,15 +24,20 @@
   <a href="#license">License</a>
 </p>
 
-<!-- ![screenshot](https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.gif) -->
+![screenshot](./assets/example.png)
+
+<hr>
+
 
 ## Key Features
 
 * Test in parallel multiple directory paths
-* Generate a `junit.xml` with `--junit`
-* Generate a `json` summary with `--json`
+* Export Results:
+  * [junit](./examples/terracove.xml) with `--junit`
+  * [json](./examples/terracove.json) summary with `--json`
+  * [html](./examples/terracove.html) report with `--html`
 * Generate `%` coverage for each module and root directory
-* Supports terraform and terragrunt in the same directory tree
+* Supports [terraform](https://www.terraform.io/) and [terragrunt](https://terragrunt.gruntwork.io/) in the same directory tree
 
 
 ## Install
@@ -63,10 +67,13 @@ Usage:
 Flags:
   -e, --exclude strings         Exclude directories while parsing tree
   -h, --help                    help for terracove
+  -w, --html                    Output HTML Report
   -j, --json                    Output JSON
   -x, --junit                   Output Junit XML
-      --o-json string           Output JSON (default "terracove.json")
-      --o-junit string          Output Junit XML (default "terracove.xml")
+      --minimal                 Don't Append Raw/JSON Plan to the Exported Output
+      --o-html string           Output HTML Report File (default "terracove.html")
+      --o-json string           Output JSON File (default "terracove.json")
+      --o-junit string          Output Junit XML File (default "terracove.xml")
   -t, --validate-tf-by string   validate terraform by the existence of [filename] in a directory (default "main.tf")
   -g, --validate-tg-by string   validate terragrunt by the existence of [filename] in a directory (default "terragrunt.hcl")
   -v, --version                 version for terracove
@@ -83,7 +90,8 @@ Flags:
 ```sh
 git clone https://github.com/jatalocks/terracove.git
 cd terracove
-terracove --junit --json . # Same as terracove --junit --json examples
+terracove --minimal --junit --json . 
+# . == examples == examples/terraform examples/terragrunt
 ```
 
 Open the **terracove.xml** or **terracove.json** and observe the results. You should see the following:
@@ -128,11 +136,12 @@ Open the **terracove.xml** or **terracove.json** and observe the results. You sh
 
 ## Credits
 
-This software uses the following open source projects:
+This project uses or is inspired by the following open source projects:
 
 - [golang-cli-template](https://github.com/FalcoSuessgott/golang-cli-template)
 - [terratest](https://terratest.gruntwork.io/)
 - [docker-terragrunt](https://github.com/devops-infra/docker-terragrunt)
+- [junit2html](https://github.com/kitproj/junit2html)
 ## Support
 
 <a href="https://www.buymeacoffee.com/jatalocks" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
