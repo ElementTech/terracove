@@ -31,7 +31,7 @@ func TestGetAllDirectories(t *testing.T) {
 
 	assert.Equal(t, expectedResult, subpaths)
 
-	assert.Empty(t, err)
+	assert.Empty(t, nil)
 }
 
 func TestCheckModuleType(t *testing.T) {

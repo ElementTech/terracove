@@ -53,7 +53,7 @@ func TestTypes(t *testing.T) {
 		}
 
 		assert.Equal(t, "/path/to/module", r.Path)
-		assert.Nil(t, r.Error)
+		assert.Empty(t, r.Error)
 		assert.Equal(t, uint(10), r.ResourceCount)
 		assert.Equal(t, uint(5), r.ResourceCountExists)
 		assert.Equal(t, uint(3), r.ResourceCountDiff)
