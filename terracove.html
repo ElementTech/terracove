@@ -103,7 +103,7 @@
 
 <hr>
 <p>50% Coverage</p>
-<p>Tuesday, Apr 11, 2023 at 4:17pm</p>
+<p>Tuesday, Apr 11, 2023 at 4:18pm</p>
 <h4>Path: examples/terragrunt</h4>
 
 <div
@@ -113,6 +113,7 @@
     </a>
 
     <ul class="centered">
+        <li><a>Coverage: 100</a></li>
         <li><a>ResourceCount: 0</a></li>
         <li><a>ResourceCountExists: 0</a></li>
         <li><a>ResourceCountDiff: 0</a></li>
@@ -155,7 +156,7 @@ To perform exactly these actions, run the following command to apply:
     terraform apply &#34;.terracove.plan&#34;
         </code>
         </div>
-        <p class='duration' title='Test duration'>457.281768ms</p>
+        <p class='duration' title='Test duration'>1.404372464s</p>
     </div>
 </div>
 
@@ -166,6 +167,7 @@ To perform exactly these actions, run the following command to apply:
     </a>
 
     <ul class="centered">
+        <li><a>Coverage: 0</a></li>
         <li><a>ResourceCount: 0</a></li>
         <li><a>ResourceCountExists: 0</a></li>
         <li><a>ResourceCountDiff: 0</a></li>
@@ -188,14 +190,14 @@ To perform exactly these actions, run the following command to apply:
 [31m│[0m [0mAn input variable with the name &#34;other_input&#34; has not been declared. This
 [31m│[0m [0mvariable can be declared with a variable &#34;other_input&#34; {} block.
 [31m╵[0m[0m
-time=2023-04-11T16:17:32&#43;03:00 level=error msg=Terraform invocation failed in /Users/amitai.getzler/Desktop/Explorium/projects/terracove/examples/terragrunt/error
-time=2023-04-11T16:17:32&#43;03:00 level=error msg=1 error occurred:
+time=2023-04-11T16:18:56&#43;03:00 level=error msg=Terraform invocation failed in /Users/amitai.getzler/Desktop/Explorium/projects/terracove/examples/terragrunt/error
+time=2023-04-11T16:18:56&#43;03:00 level=error msg=1 error occurred:
 	* exit status 1
 
 }
         </code>
         </div>
-        <p class='duration' title='Test duration'>1.018127206s</p>
+        <p class='duration' title='Test duration'>2.716193675s</p>
     </div>
 </div>
 
@@ -204,8 +206,42 @@ time=2023-04-11T16:17:32&#43;03:00 level=error msg=1 error occurred:
 
 <hr>
 <p>75% Coverage</p>
-<p>Tuesday, Apr 11, 2023 at 4:17pm</p>
+<p>Tuesday, Apr 11, 2023 at 4:18pm</p>
 <h4>Path: examples/terraform</h4>
+
+<div
+    class='passed'>
+    <a href='#examplesterraformsuccess'>
+        examples/terraform/success <span class='badge'>Pass</span>
+    </a>
+
+    <ul class="centered">
+        <li><a>Coverage: 100</a></li>
+        <li><a>ResourceCount: 2</a></li>
+        <li><a>ResourceCountExists: 2</a></li>
+        <li><a>ResourceCountDiff: 0</a></li>
+        <li><a>ActionNoopCount: 2</a></li>
+        <li><a>ActionCreateCount: 0</a></li>
+        <li><a>ActionReadCount: 0</a></li>
+        <li><a>ActionUpdateCount: 0</a></li>
+        <li><a>ActionDeleteCount: 0</a></li>
+      </ul>
+
+    
+    <div class='expando' id='examplesterraformsuccess'>
+        <div class='content'><code>
+            [0m[1mlocal_file.example2: Refreshing state... [id=eba8f1df91816c6e3c9bec7506fe550156e662a3][0m
+[0m[1mlocal_file.example: Refreshing state... [id=943a702d06f34599aee1f8da8ef9f7296031d699][0m
+
+[0m[1m[32mNo changes.[0m[1m Your infrastructure matches the configuration.[0m
+
+[0mTerraform has compared your real infrastructure against your configuration
+and found no differences, so no changes are needed.
+        </code>
+        </div>
+        <p class='duration' title='Test duration'>2.656553941s</p>
+    </div>
+</div>
 
 <div
     class='failed'>
@@ -214,6 +250,7 @@ time=2023-04-11T16:17:32&#43;03:00 level=error msg=1 error occurred:
     </a>
 
     <ul class="centered">
+        <li><a>Coverage: 50</a></li>
         <li><a>ResourceCount: 2</a></li>
         <li><a>ResourceCountExists: 1</a></li>
         <li><a>ResourceCountDiff: 1</a></li>
@@ -260,40 +297,7 @@ To perform exactly these actions, run the following command to apply:
     terraform apply &#34;.terracove.plan&#34;
         </code>
         </div>
-        <p class='duration' title='Test duration'>734.292367ms</p>
-    </div>
-</div>
-
-<div
-    class='passed'>
-    <a href='#examplesterraformsuccess'>
-        examples/terraform/success <span class='badge'>Pass</span>
-    </a>
-
-    <ul class="centered">
-        <li><a>ResourceCount: 2</a></li>
-        <li><a>ResourceCountExists: 2</a></li>
-        <li><a>ResourceCountDiff: 0</a></li>
-        <li><a>ActionNoopCount: 2</a></li>
-        <li><a>ActionCreateCount: 0</a></li>
-        <li><a>ActionReadCount: 0</a></li>
-        <li><a>ActionUpdateCount: 0</a></li>
-        <li><a>ActionDeleteCount: 0</a></li>
-      </ul>
-
-    
-    <div class='expando' id='examplesterraformsuccess'>
-        <div class='content'><code>
-            [0m[1mlocal_file.example2: Refreshing state... [id=eba8f1df91816c6e3c9bec7506fe550156e662a3][0m
-[0m[1mlocal_file.example: Refreshing state... [id=943a702d06f34599aee1f8da8ef9f7296031d699][0m
-
-[0m[1m[32mNo changes.[0m[1m Your infrastructure matches the configuration.[0m
-
-[0mTerraform has compared your real infrastructure against your configuration
-and found no differences, so no changes are needed.
-        </code>
-        </div>
-        <p class='duration' title='Test duration'>754.524799ms</p>
+        <p class='duration' title='Test duration'>2.665317647s</p>
     </div>
 </div>
 
