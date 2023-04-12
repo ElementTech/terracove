@@ -1,3 +1,6 @@
+package html
+
+var htmlTmpl string = `
 <html>
 
 <head>
@@ -195,3 +198,4 @@
 </body>
 
 </html>
+`

@@ -18,7 +18,7 @@ func CreateHTML(suites []types.TerraformModuleStatus, path string) error {
 	}
 
 	defer file.Close()
-	tmpl, err := template.New("report.html").Funcs(template.FuncMap{
+	tmpl, err := template.New("htmlTmpl").Funcs(template.FuncMap{
 		"strip": func(s string) string {
 			var result strings.Builder
 			for i := 0; i < len(s); i++ {
@@ -41,7 +41,7 @@ func CreateHTML(suites []types.TerraformModuleStatus, path string) error {
 			humanReadable := t.Format("Monday, Jan 2, 2006 at 3:04pm")
 			return humanReadable
 		},
-	}).ParseFiles("pkg/html/report.html")
+	}).Parse(htmlTmpl)
 
 	if err != nil {
 		return err
