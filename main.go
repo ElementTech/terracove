@@ -7,7 +7,7 @@ import (
 	"github.com/jatalocks/terracove/cmd"
 )
 
-var version = "0.0.3"
+var version = "0.0.5"
 
 func main() {
 	if err := cmd.Execute(version, false); err != nil {
