@@ -31,15 +31,15 @@ inputs:
     description: Don't Append Raw/JSON Plan to the Exported Output
     default: "false"
     required: false
-  html-output:
+  o-html:
     description: Create an HTML Report
     default: "terracove.html"
     required: false
-  json-output:
+  o-json:
     description: Create a JSON Report
     default: "terracove.json"
     required: false
-  junit-output:
+  o-junit:
     description: Create a Junit XML Report
     default: "terracove.xml"
     required: false
@@ -51,7 +51,7 @@ inputs:
     description: Validate terragrunt by the existence of [filename]
     default: "terragrunt.hcl"
     required: false
-  exclude-dirs:
+  exclude:
     description: Exclude directories using a comma separated list
     default: ""
     required: false
@@ -66,12 +66,12 @@ runs:
     - --minimal=${{ inputs.minimal }}
     - --ignore-errors=${{ inputs.ignore-errors }}
     - --ignore-empty=${{ inputs.ignore-empty }}
-    - --html-output=${{ inputs.html-output }}
-    - --json-output=${{ inputs.json-output }}
-    - --junit-output=${{ inputs.junit-output }}
+    - --o-html=${{ inputs.o-html }}
+    - --o-json=${{ inputs.o-json }}
+    - --o-junit=${{ inputs.o-junit }}
     - --validate-tf-by=${{ inputs.validate-tf-by }}
     - --validate-tg-by=${{ inputs.validate-tg-by }}
-    - --exclude-dirs=${{ inputs.exclude-dirs }}
+    - --exclude=${{ inputs.exclude-dirs }}
 branding:
   icon: "layers"
   color: "purple"
