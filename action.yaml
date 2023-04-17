@@ -1,0 +1,67 @@
+---
+name: Terracove
+description: Use the Terracove CLI in a github action
+author: jatalocks
+inputs:
+  path:
+    description: The Directory Tree Root
+    default: "."
+    required: true
+  html:
+    description: Create an HTML Report
+    default: "true"
+    required: false
+  json:
+    description: Create a JSON Report
+    default: "true"
+    required: false
+  junit:
+    description: Create a Junit XML Report
+    default: "true"
+    required: false
+  minimal:
+    description: Don't Append Raw/JSON Plan to the Exported Output
+    default: "false"
+    required: false
+  html-output:
+    description: Create an HTML Report
+    default: "terracove.html"
+    required: false
+  json-output:
+    description: Create a JSON Report
+    default: "terracove.json"
+    required: false
+  junit-output:
+    description: Create a Junit XML Report
+    default: "terracove.xml"
+    required: false
+  validate-tf-by:
+    description: Validate terraform by the existence of [filename]
+    default: "main.tf"
+    required: false
+  validate-tg-by:
+    description: Validate terragrunt by the existence of [filename]
+    default: "terragrunt.hcl"
+    required: false
+  exclude-dirs:
+    description: Exclude directories using a comma separated list
+    default: ""
+    required: false
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+    - ${{ inputs.path }}
+    - ${{ inputs.html }}
+    - ${{ inputs.json }}
+    - ${{ inputs.junit }}
+    - ${{ inputs.minimal }}
+    - ${{ inputs.html-output }}
+    - ${{ inputs.json-output }}
+    - ${{ inputs.junit-output }}
+    - ${{ inputs.validate-tf-by }}
+    - ${{ inputs.validate-tg-by }}
+    - ${{ inputs.exclude-dirs }}
+branding:
+  icon: "layers"
+  color: "purple"
