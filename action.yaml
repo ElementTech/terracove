@@ -56,7 +56,8 @@ inputs:
     default: ""
     required: false
 runs:
-  image: 'docker://ghcr.io/jatalocks/terracove'
+  using: docker
+  image: "docker://ghcr.io/jatalocks/terracove"
   args:
     - ${{ inputs.path }}
     - --html=${{ inputs.html }}
