@@ -7,6 +7,14 @@ inputs:
     description: The Directory Tree Root
     default: "."
     required: true
+  ignore-errors:
+    description: Ignore Planning Errors
+    default: "false"
+    required: false
+  ignore-empty:
+    description: Ignore Modules with 0 Resources
+    default: "false"
+    required: false
   html:
     description: Create an HTML Report
     default: "true"
@@ -52,16 +60,18 @@ runs:
   image: Dockerfile
   args:
     - ${{ inputs.path }}
-    - ${{ inputs.html }}
-    - ${{ inputs.json }}
-    - ${{ inputs.junit }}
-    - ${{ inputs.minimal }}
-    - ${{ inputs.html-output }}
-    - ${{ inputs.json-output }}
-    - ${{ inputs.junit-output }}
-    - ${{ inputs.validate-tf-by }}
-    - ${{ inputs.validate-tg-by }}
-    - ${{ inputs.exclude-dirs }}
+    - --html=${{ inputs.html }}
+    - --json=${{ inputs.json }}
+    - --junit=${{ inputs.junit }}
+    - --minimal=${{ inputs.minimal }}
+    - --ignore-errors=${{ inputs.ignore-errors }}
+    - --ignore-empty=${{ inputs.ignore-empty }}
+    - --html-output=${{ inputs.html-output }}
+    - --json-output=${{ inputs.json-output }}
+    - --junit-output=${{ inputs.junit-output }}
+    - --validate-tf-by=${{ inputs.validate-tf-by }}
+    - --validate-tg-by=${{ inputs.validate-tg-by }}
+    - --exclude-dirs=${{ inputs.exclude-dirs }}
 branding:
   icon: "layers"
   color: "purple"
