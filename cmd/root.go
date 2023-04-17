@@ -19,7 +19,7 @@ func newRootCmd(version string) *cobra.Command {
 		Long: `terracove provides a recursive way to test the health and validity
 of a terraform/terragrunt repository structues.
 It plans all modules in parallel and outputs a report
-in one of more of the following formats: junit or json.`,
+in one of more of the following formats: junit, html or json.`,
 		Version: version,
 		Args:    cobra.MinimumNArgs(1),
 		RunE:    run,
@@ -31,6 +31,8 @@ in one of more of the following formats: junit or json.`,
 	cmd.Flags().BoolVarP(&OutputOptions.HTML, "html", "w", false, "Output HTML Report")
 	cmd.Flags().StringVar(&OutputOptions.JsonOutPath, "o-json", "terracove.json", "Output JSON File")
 	cmd.Flags().BoolVar(&OutputOptions.Minimal, "minimal", false, "Don't Append Raw/JSON Plan to the Exported Output")
+	cmd.Flags().BoolVar(&OutputOptions.IgnoreError, "ignore-errors", false, "Ignore Planning Errors")
+	cmd.Flags().BoolVar(&OutputOptions.IgnoreEmpty, "ignore-empty", false, "Ignore Modules with 0 Resources")
 	// cmd.Flags().StringVar(&OutputOptions.YamlOutPath, "o-yaml", "terracove.yaml", "Output YAML")
 	cmd.Flags().StringVar(&OutputOptions.JunitOutPath, "o-junit", "terracove.xml", "Output Junit XML File")
 	cmd.Flags().StringVar(&OutputOptions.HTMLOutPath, "o-html", "terracove.html", "Output HTML Report File")

@@ -17,6 +17,8 @@ type OutputOptions struct {
 	HTMLOutPath string
 	// YamlOutPath  string
 	JunitOutPath string
+	IgnoreError  bool
+	IgnoreEmpty  bool
 }
 
 type RecursiveOptions struct {

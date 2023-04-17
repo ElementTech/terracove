@@ -37,6 +37,7 @@
   * [json](./examples/terracove.json) summary with `--json`
   * [html](./examples/terracove.html) report with `--html`
 * Generate `%` coverage for each module and root directory
+* Ignore Errors and Empty Modules
 * Supports [terraform](https://www.terraform.io/) and [terragrunt](https://terragrunt.gruntwork.io/) in the same directory tree
 
 
@@ -51,7 +52,7 @@ brew install terracove
 
 If you'd like to use Docker, you can use the official image:
 ```sh
-docker run --rm -v $(pwd):/data ghcr.io/jatalocks/terracove /data --json --junit
+docker run --rm -v $(pwd):/data ghcr.io/jatalocks/terracove /data --json --junit --html
 ```
 
 Or, you can install directly from release:
@@ -68,6 +69,8 @@ Flags:
   -e, --exclude strings         Exclude directories while parsing tree
   -h, --help                    help for terracove
   -w, --html                    Output HTML Report
+      --ignore-empty            Ignore Modules with 0 Resources
+      --ignore-errors           Ignore Planning Errors
   -j, --json                    Output JSON
   -x, --junit                   Output Junit XML
       --minimal                 Don't Append Raw/JSON Plan to the Exported Output
