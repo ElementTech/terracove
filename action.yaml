@@ -60,12 +60,12 @@ runs:
   image: "docker://ghcr.io/jatalocks/terracove"
   args:
     - ${{ inputs.path }}
-    - --html=${{ inputs.html }}
-    - --json=${{ inputs.json }}
-    - --junit=${{ inputs.junit }}
-    - --minimal=${{ inputs.minimal }}
-    - --ignore-errors=${{ inputs.ignore-errors }}
-    - --ignore-empty=${{ inputs.ignore-empty }}
+    - --html=${{ fromJSON(inputs.html) }}
+    - --json=${{ fromJSON(inputs.json) }}
+    - --junit=${{ fromJSON(inputs.junit) }}
+    - --minimal=${{ fromJSON(inputs.minimal) }}
+    - --ignore-errors=${{ fromJSON(inputs.ignore-errors) }}
+    - --ignore-empty=${{ fromJSON(inputs.ignore-empty) }}
     - --o-html=${{ inputs.o-html }}
     - --o-json=${{ inputs.o-json }}
     - --o-junit=${{ inputs.o-junit }}
