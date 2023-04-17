@@ -107,7 +107,9 @@ func TerraformModulesTerratest(paths []string, OutputOptions types.OutputOptions
 					spinner.Suffix = fmt.Sprintf(" %v: ", dir)
 					spinner.Start()
 					output, err := terraform.InitAndPlanE(&testingContext, tfOptions)
-
+					if OutputOptions.IgnoreError && (err != nil) {
+						return
+					}
 					res := types.Result{
 						Path:     dir,
 						Duration: time.Since(now),
@@ -133,6 +135,9 @@ func TerraformModulesTerratest(paths []string, OutputOptions types.OutputOptions
 						}
 						if err == nil {
 							resourceCount := len(plan.ResourceChangesMap)
+							if OutputOptions.IgnoreEmpty && (resourceCount == 0) {
+								return
+							}
 							var resourceCountExists uint
 							var resourceCountDiff uint
 							var actionCount = map[tfjson.Action]int{}
