@@ -6,12 +6,12 @@
 <h4 align="center">A recursive terraform repository tester powered by <a href="https://terratest.gruntwork.io/" target="_blank">Terratest</a>.</h4>
 
 <p align="center">
-<img src="https://github.com/jatalocks/terracove/actions/workflows/test.yml/badge.svg" alt="drawing"/>
-<img src="https://github.com/jatalocks/terracove/actions/workflows/lint.yml/badge.svg" alt="drawing"/>
-<img src="https://codecov.io/gh/jatalocks/terracove/branch/main/graph/badge.svg" alt="drawing"/>
-<img src="https://goreportcard.com/badge/jatalocks/terracove" alt="drawing"/>
-<img src="https://img.shields.io/github/v/release/jatalocks/terracove" alt="drawing"/>
-<img src="https://img.shields.io/github/downloads/jatalocks/terracove/total.svg" alt="drawing"/>
+<img src="https://github.com/elementtech/terracove/actions/workflows/test.yml/badge.svg" alt="drawing"/>
+<img src="https://github.com/elementtech/terracove/actions/workflows/lint.yml/badge.svg" alt="drawing"/>
+<img src="https://codecov.io/gh/elementtech/terracove/branch/main/graph/badge.svg" alt="drawing"/>
+<img src="https://goreportcard.com/badge/elementtech/terracove" alt="drawing"/>
+<img src="https://img.shields.io/github/v/release/elementtech/terracove" alt="drawing"/>
+<img src="https://img.shields.io/github/downloads/elementtech/terracove/total.svg" alt="drawing"/>
 </p>
 
 <p align="center">
@@ -46,18 +46,18 @@
 The recommended way to install on MacOS is via brew:
 
 ```sh
-brew tap jatalocks/jatalocks
+brew tap elementtech/elementtech
 brew install terracove
 ```
 
 If you'd like to use Docker, you can use the official image:
 ```sh
-docker run --rm -v $(pwd):/data ghcr.io/jatalocks/terracove /data --json --junit --html
+docker run --rm -v $(pwd):/data ghcr.io/elementtech/terracove /data --json --junit --html
 ```
 
 Or, you can install directly from release:
 ```sh
-curl -sS https://raw.githubusercontent.com/jatalocks/terracove/main/install.sh | bash
+curl -sS https://raw.githubusercontent.com/elementtech/terracove/main/install.sh | bash
 ```
 ## Usage
 
@@ -91,7 +91,7 @@ Flags:
 > Clone this repository and give it a try.
 
 ```sh
-git clone https://github.com/jatalocks/terracove.git
+git clone https://github.com/elementtech/terracove.git
 cd terracove
 terracove --minimal --junit --json --html . 
 # . == examples == examples/terraform examples/terragrunt
