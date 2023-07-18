@@ -1,4 +1,4 @@
-module github.com/jatalocks/terracove
+module github.com/elementtech/terracove
 
 go 1.19
 

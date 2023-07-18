@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/GoogleCloudPlatform/testgrid/metadata/junit"
-	"github.com/jatalocks/terracove/internal/types"
+	"github.com/elementtech/terracove/internal/types"
 	"github.com/stretchr/testify/assert"
 )
 

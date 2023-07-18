@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jatalocks/terracove/internal/types"
+	"github.com/elementtech/terracove/internal/types"
 )
 
 func CreateHTML(suites []types.TerraformModuleStatus, path string) error {

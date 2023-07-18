@@ -3,8 +3,8 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/jatalocks/terracove/internal/types"
-	"github.com/jatalocks/terracove/pkg/scan"
+	"github.com/elementtech/terracove/internal/types"
+	"github.com/elementtech/terracove/pkg/scan"
 	"github.com/spf13/cobra"
 )
 

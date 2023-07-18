@@ -10,7 +10,7 @@ import (
 
 	"github.com/GoogleCloudPlatform/testgrid/metadata/junit"
 	"github.com/ahmetb/go-linq/v3"
-	"github.com/jatalocks/terracove/internal/types"
+	"github.com/elementtech/terracove/internal/types"
 )
 
 func CreateCoverageXML(suitesRoot junit.Suites, path string) error {

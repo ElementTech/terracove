@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/jatalocks/terracove/cmd"
+	"github.com/elementtech/terracove/cmd"
 )
 
 var version = "0.0.6"

@@ -14,12 +14,12 @@ builds:
 
 brews:
   - name: terracove
-    homepage: "https://github.com/jatalocks/terracove"
+    homepage: "https://github.com/elementtech/terracove"
     tap:
-      owner: jatalocks
-      name: homebrew-jatalocks
+      owner: elementtech
+      name: homebrew-elementtech
     commit_author:
-      name: jatalocks
+      name: elementtech
       email: amitai333@gmail.com
 
 archives:
@@ -35,13 +35,13 @@ archives:
 
 dockers:
   - image_templates:
-      - "ghcr.io/jatalocks/{{.ProjectName}}:{{ .Tag }}-amd64"
+      - "ghcr.io/elementtech/{{.ProjectName}}:{{ .Tag }}-amd64"
     dockerfile: Dockerfile
     use: buildx
     build_flag_templates:
       - "--pull"
-      - "--label=io.artifacthub.package.readme-url=https://raw.githubusercontent.com/jatalocks/terracove/main/README.md"
-      - '--label=io.artifacthub.package.maintainers=[{"name":"Jatalocks","email":"amitai333@gmail.com"}]'
+      - "--label=io.artifacthub.package.readme-url=https://raw.githubusercontent.com/elementtech/terracove/main/README.md"
+      - '--label=io.artifacthub.package.maintainers=[{"name":"ElementTech","email":"amitai333@gmail.com"}]'
       - "--label=io.artifacthub.package.license=MIT"
       - "--label=org.opencontainers.image.description=A recursive terraform repository tester powered by Terratest"
       - "--label=org.opencontainers.image.created={{.Date}}"
@@ -51,14 +51,14 @@ dockers:
       - "--label=org.opencontainers.image.source={{.GitURL}}"
       - "--platform=linux/amd64"
   - image_templates:
-      - "ghcr.io/jatalocks/{{.ProjectName}}:{{ .Tag }}-arm64"
+      - "ghcr.io/elementtech/{{.ProjectName}}:{{ .Tag }}-arm64"
     dockerfile: Dockerfile
     use: buildx
     build_flag_templates:
       - "--pull"
-      - "--label=io.artifacthub.package.readme-url=https://raw.githubusercontent.com/jatalocks/terracove/main/README.md"
-      - "--label=io.artifacthub.package.logo-url=https://raw.githubusercontent.com/jatalocks/terracove/main/assets/logo/logo.png"
-      - '--label=io.artifacthub.package.maintainers=[{"name":"Jatalocks","email":"amitai333@gmail.com"}]'
+      - "--label=io.artifacthub.package.readme-url=https://raw.githubusercontent.com/elementtech/terracove/main/README.md"
+      - "--label=io.artifacthub.package.logo-url=https://raw.githubusercontent.com/elementtech/terracove/main/assets/logo/logo.png"
+      - '--label=io.artifacthub.package.maintainers=[{"name":"ElementTech","email":"amitai333@gmail.com"}]'
       - "--label=io.artifacthub.package.license=MIT"
       - "--label=org.opencontainers.image.description=A recursive terraform repository tester powered by Terratest"
       - "--label=org.opencontainers.image.created={{.Date}}"
@@ -70,14 +70,14 @@ dockers:
     goarch: arm64
 
 docker_manifests:
-  - name_template: "ghcr.io/jatalocks/{{.ProjectName}}:{{ .Tag }}"
+  - name_template: "ghcr.io/elementtech/{{.ProjectName}}:{{ .Tag }}"
     image_templates:
-      - "ghcr.io/jatalocks/{{.ProjectName}}:{{ .Tag }}-amd64"
-      - "ghcr.io/jatalocks/{{.ProjectName}}:{{ .Tag }}-arm64"
-  - name_template: "ghcr.io/jatalocks/{{.ProjectName}}:latest"
+      - "ghcr.io/elementtech/{{.ProjectName}}:{{ .Tag }}-amd64"
+      - "ghcr.io/elementtech/{{.ProjectName}}:{{ .Tag }}-arm64"
+  - name_template: "ghcr.io/elementtech/{{.ProjectName}}:latest"
     image_templates:
-      - "ghcr.io/jatalocks/{{.ProjectName}}:{{ .Tag }}-amd64"
-      - "ghcr.io/jatalocks/{{.ProjectName}}:{{ .Tag }}-arm64"
+      - "ghcr.io/elementtech/{{.ProjectName}}:{{ .Tag }}-amd64"
+      - "ghcr.io/elementtech/{{.ProjectName}}:{{ .Tag }}-arm64"
 
 checksum:
   name_template: "checksums.txt"

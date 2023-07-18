@@ -12,12 +12,12 @@ import (
 	"time"
 
 	"github.com/briandowns/spinner"
+	"github.com/elementtech/terracove/internal/types"
+	"github.com/elementtech/terracove/pkg/html"
+	"github.com/elementtech/terracove/pkg/report"
 	"github.com/gruntwork-io/terratest/modules/logger"
 	"github.com/gruntwork-io/terratest/modules/terraform"
 	tfjson "github.com/hashicorp/terraform-json"
-	"github.com/jatalocks/terracove/internal/types"
-	"github.com/jatalocks/terracove/pkg/html"
-	"github.com/jatalocks/terracove/pkg/report"
 	"golang.org/x/exp/slices"
 )
 
